@@ -1,27 +1,103 @@
 Handy Extension is just a simple library with extensions to the core libraries to make them more handy and quicker to use. 
 
+> I don't know how "deadly" this is but I just use it anyway.
+
 ## Extensions On:
-- BuildContext
-- String
-- double
-- Iteration
+- [BuildContext](https://api.flutter.dev/flutter/widgets/BuildContext-class.html)
+- [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
+- [double](https://api.flutter.dev/flutter/dart-core/double-class.html)
+- [Iteration](https://api.flutter.dev/flutter/dart-core/Iterator-class.html)
 
 ## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+### Add as a dependency
+```yaml
+dependencies:
+  handy_extensions: ^0.0.1
+```
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
+### BuildContext
 
+#### Navigate To A Page
 ```dart
-const like = 'sample';
+context.goTo(page: const Home());
+```
+
+#### Navigate To A Page Replacing The Current Page
+```dart
+context.goTo(page: const Home(), replace: true);
+```
+
+#### Go Back To The Previous Page
+```dart
+context.goBack();
+```
+
+#### Navigate To A Page And Remove History
+```dart
+context.goToRefresh(page: const Login());
+```
+
+#### Notify The User Using A SnackBar
+```dart
+context.notify(message: 'Hello World', isError: false); // You can pass the isError argument or leave it, it will default to false
+```
+
+#### Get Screen Size (based on MediaQuery)
+```dart
+// Height
+context.height;
+// Width
+context.width;
+```
+
+### double
+> Makes use of this package [money_formatter](https://pub.dev/packages/money_formatter)
+#### Get Your Double Formatted As Money using the money property
+```dart
+10.money.symbolOnLeft; // => $ 10.00 (String)
+1000.money.compactSymbolOnLeft; // => $ 1K (String)
+```
+
+#### Get comparison methods on your double using the compare property
+```dart
+10.compare.isEqual(10); // => true (bool)
+```
+
+Available methods for comparison:
+- [isEqual](https://pub.dev/documentation/money_formatter/latest/money_formatter/MoneyFormatterCompare/isEqual.html)
+- [isEqualOrGreaterThan](https://pub.dev/documentation/money_formatter/latest/money_formatter/MoneyFormatterCompare/isEqualOrGreaterThan.html)
+- [isEqualOrLowerThan](https://pub.dev/documentation/money_formatter/latest/money_formatter/MoneyFormatterCompare/isEqualOrLowerThan.html)
+- [isGreaterThan](https://pub.dev/documentation/money_formatter/latest/money_formatter/MoneyFormatterCompare/isGreaterThan.html)
+- [isLowerThan](https://pub.dev/documentation/money_formatter/latest/money_formatter/MoneyFormatterCompare/isLowerThan.html)
+
+
+### Iteration
+#### firstWhereOrNull
+```dart
+List<String> list = ['a', 'b', 'c'];
+String? character = list.firstWhereOrNull( (String item) => item == 'a'); // => 'a' (String) or null (null)
+```
+
+### String
+#### Country Emoji
+```dart
+String country = 'ZW';
+String emoji = country.countryEmoji; // => 🇿🇼 (String)
+```
+
+#### Title Case
+```dart
+String title = 'hello world';
+String titleCase = title.titleCase; // => Hello world
+```
+
+#### Heading Case
+```dart
+String heading = 'hello world';
+String headingCase = heading.headingCase; // => Hello World
 ```
 
 ## Additional information
-
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+You can add in more extensions of your own -> share with the rest of the world.
