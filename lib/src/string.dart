@@ -13,4 +13,14 @@ extension HandyStringExtension on String {
 
     return '${this[0].toUpperCase()}${substring(1).toLowerCase()}';
   }
+
+  /// Returns a new string with the first character of each word as upper case
+  String get headingCase {
+    List<String> words = split(' ');
+    for (String word in words) {
+      words[words.indexOf(word)] = word.titleCase;
+    }
+
+    return words.join(' ');
+  }
 }
