@@ -7,4 +7,8 @@ void main() {
     expect('handy extensions'.headingCase, 'Handy Extensions');
     expect('ZW'.countryEmoji, "🇿🇼");
   });
+
+  test('DATETIME', () {
+    expect(DateTime.now().getYear, "${DateTime.now().year}");
+  });
 }
