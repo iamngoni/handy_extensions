@@ -43,4 +43,34 @@ extension HandyContextExtension on BuildContext {
       (route) => false,
     );
   }
+
+  /// Notify
+  ///
+  /// [message] is the message to display
+  /// [duration] is the duration of the notification -> Defaults to 3 seconds
+  /// [backgroundColor] is the background color of the notification -> Defaults to grey or red if it's an error
+  /// [textColor] is the text color of the notification -> Defaults to white
+  notify({
+    required String message,
+    Widget? content,
+    Color? backgroundColor,
+    Color? textColor,
+    Duration? duration,
+    bool isError = false,
+  }) {
+    ScaffoldMessenger.of(this).showSnackBar(
+      SnackBar(
+        content: content ??
+            Text(
+              message,
+              style: TextStyle(
+                color: textColor ?? Colors.white,
+              ),
+            ),
+        duration: duration ?? const Duration(seconds: 3),
+        backgroundColor:
+            backgroundColor ?? (isError ? Colors.red : Colors.grey),
+      ),
+    );
+  }
 }
