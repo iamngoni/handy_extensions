@@ -1,6 +1,10 @@
-import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
 import 'package:handy_extensions/handy_extensions.dart';
 
 void main() {
-  debugPrint("ZW".countryEmoji);
+  test('STRING', () {
+    expect('handy extensions'.titleCase, 'Handy extensions');
+    expect('handy extensions'.headingCase, 'Handy Extensions');
+    expect('ZW'.countryEmoji, "🇿🇼");
+  });
 }
