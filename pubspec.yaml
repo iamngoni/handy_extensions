@@ -11,6 +11,8 @@ dependencies:
   flutter:
     sdk: flutter
 
+  money_formatter: ^0.0.3
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
