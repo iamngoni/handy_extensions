@@ -1,1 +1,1 @@
-export 'package:handy_extensions/src/strings/index.dart';
+export 'package:handy_extensions/src/string.dart';
