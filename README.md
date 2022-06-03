@@ -1,6 +1,6 @@
 # [HandyExtensions](https://pub.dev/packages/handy_extensions/)
 
-<img src="https://img.shields.io/pub/v/handle_extensions?style=for-the-badge">
+<img src="https://img.shields.io/pub/v/handy_extensions?style=for-the-badge">
 <img src="https://img.shields.io/github/last-commit/iamngoni/handy_extensions">
 <img src="https://img.shields.io/twitter/url?label=iamngoni_&style=social&url=https%3A%2F%2Ftwitter.com%2Fiamngoni_">
 
