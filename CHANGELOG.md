@@ -1,3 +1,7 @@
+## 0.0.3
+
+* Time ago extension on DateTime
+
 ## 0.0.2
 
 * DateTime extension
