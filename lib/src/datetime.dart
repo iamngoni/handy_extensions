@@ -18,4 +18,21 @@ extension HandyDateTimeExtension on DateTime {
   String get getMonth => DateConstants.months[month - 1].month;
 
   String get getYear => "$year";
+
+  String get timeAgo {
+    final currentTime = DateTime.now();
+    final difference = currentTime.difference(this);
+
+    if (difference.inDays >= 1) {
+      return "${difference.inDays}d";
+    } else if (difference.inHours >= 1) {
+      return "${difference.inHours}h";
+    } else if (difference.inMinutes >= 1) {
+      return "${difference.inMinutes}m";
+    } else if (difference.inSeconds >= 1) {
+      return "${difference.inSeconds}s";
+    } else {
+      return "Just now";
+    }
+  }
 }
