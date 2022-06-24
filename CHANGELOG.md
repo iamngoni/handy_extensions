@@ -1,3 +1,7 @@
+## 0.0.4
+
+* List extension for partition list into chunks
+
 ## 0.0.3
 
 * Time ago extension on DateTime

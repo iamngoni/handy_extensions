@@ -13,6 +13,7 @@ Handy Extension is just a simple library with extensions to the core libraries t
 - [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
 - [double](https://api.flutter.dev/flutter/dart-core/double-class.html)
 - [Iteration](https://api.flutter.dev/flutter/dart-core/Iterator-class.html)
+- [List](https://api.flutter.dev/flutter/dart-core/List-class.html)
 
 ## Getting started
 ### Add as a dependency
@@ -103,6 +104,12 @@ String titleCase = title.titleCase; // => Hello world
 ```dart
 String heading = 'hello world';
 String headingCase = heading.headingCase; // => Hello World
+```
+
+### List
+#### Partition into chunks
+```dart
+[1,2,3,4,5,6].partition(chunkSize: 3); // => [[1,2,3],[4,5,6]] (List<List<int>>). By default it will partition into chunks of 2
 ```
 
 ## Additional information
