@@ -13,7 +13,7 @@ void main() {
   });
 
   test("LIST", () {
-    expect([1, 2, 3, 4, 5, 6].partition(), [
+    expect([1, 2, 3, 4, 5, 6].partition(chunkSize: 2), [
       [1, 2],
       [3, 4],
       [5, 6]

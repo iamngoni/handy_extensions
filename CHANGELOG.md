@@ -1,3 +1,7 @@
+## 0.0.4+1
+
+* Bug fixed
+
 ## 0.0.4
 
 * List extension for partition list into chunks
