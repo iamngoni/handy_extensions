@@ -19,7 +19,7 @@ Handy Extension is just a simple library with extensions to the core libraries t
 ### Add as a dependency
 ```yaml
 dependencies:
-  handy_extensions: ^0.0.2
+  handy_extensions: <version>
 ```
 
 ## Usage
