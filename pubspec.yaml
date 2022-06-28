@@ -1,6 +1,6 @@
 name: handy_extensions
 description: Handy Extension is just a simple library with extensions to the core libraries to make them more handy and quicker to use.
-version: 0.0.4+1
+version: 0.0.5
 repository: https://github.com/iamngoni/handy_extensions
 
 environment:

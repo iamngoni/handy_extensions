@@ -12,11 +12,20 @@ void main() {
     expect(DateTime.now().getYear, "${DateTime.now().year}");
   });
 
-  test("LIST", () {
-    expect([1, 2, 3, 4, 5, 6].partition(chunkSize: 2), [
-      [1, 2],
-      [3, 4],
-      [5, 6]
-    ]);
+  group("LIST EXTENSIONS", () {
+    test("partition", () {
+      expect([1, 2, 3, 4, 5, 6].partition(chunkSize: 2), [
+        [1, 2],
+        [3, 4],
+        [5, 6]
+      ]);
+    });
+
+    test("same", () {
+      List<int> list1 = [1, 2, 3];
+      List<int> list2 = [3, 2, 1];
+
+      expect(list1.same(list2), true);
+    });
   });
 }

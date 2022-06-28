@@ -1,3 +1,9 @@
+## 0.0.5
+
+* General Extensions
+* Check equality on lists sorted differently
+
+
 ## 0.0.4+1
 
 * Bug fixed
