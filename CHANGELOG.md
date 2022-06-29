@@ -1,3 +1,7 @@
+## 0.0.5+1
+
+* Updated datetime extensions
+
 ## 0.0.5
 
 * General Extensions

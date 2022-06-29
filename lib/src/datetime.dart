@@ -4,10 +4,10 @@ extension HandyDateTimeExtension on DateTime {
   String get readableDate => "$getDay $getDate $getMonth $getYear";
 
   String get readableDateTime =>
-      "$getMonth $getDate, $getYear $hour$minute hrs";
+      "$getMonth $getDate, $getYear ${hour >= 10 ? hour : "0$hour"}:${minute >= 10 ? minute : "0$minute"}:${second >= 10 ? second : "0$second"}";
 
   String get readableTime =>
-      "${hour >= 10 ? hour : "0$hour"}:${minute >= 10 ? minute : "0$minute"} hrs";
+      "${hour >= 10 ? hour : "0$hour"}:${minute >= 10 ? minute : "0$minute"}:${second >= 10 ? second : "0$second"}";
 
   String get getDay => weekday == 7
       ? DateConstants.days[0].day
