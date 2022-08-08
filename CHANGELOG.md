@@ -1,3 +1,8 @@
+## 0.0.6
+
+* Fix: add proper return type on the partition method
+* Add new getter on any type to check if variable is null
+
 ## 0.0.5+1
 
 * Updated datetime extensions

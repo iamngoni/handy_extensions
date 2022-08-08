@@ -112,5 +112,12 @@ String headingCase = heading.headingCase; // => Hello World
 [1,2,3,4,5,6].partition(chunkSize: 3); // => [[1,2,3],[4,5,6]] (List<List<int>>). By default it will partition into chunks of 2
 ```
 
+### General
+#### Check if variable is null
+```dart
+String? name = null;
+name.isNull; // => true (bool)
+```
+
 ## Additional information
 You can add in more extensions of your own -> share with the rest of the world.
