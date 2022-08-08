@@ -1,5 +1,5 @@
 extension HandyListExtensions<E> on List<E> {
-  List<List> partition({int chunkSize = 2}) {
+  List<List<E>> partition({int chunkSize = 2}) {
     List<List<E>> chunks = [];
 
     for (int i = 0; i < length; i += chunkSize) {
