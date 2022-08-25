@@ -1,3 +1,8 @@
+## 0.0.6+1
+
+* getShortMonth - Returns a short month string e.g. Jan, Feb etc
+* getShortDay - Returns a short day string e.g. Mon, Tue etc
+
 ## 0.0.6
 
 * Fix: add proper return type on the partition method

@@ -1,4 +1,8 @@
 extension HandyListExtensions<E> on List<E> {
+  /// Partition
+  ///
+  /// Splits a [List] into the separate list chunks depending on the
+  /// specified [chunkSize]. Chunk size will default to 2
   List<List<E>> partition({int chunkSize = 2}) {
     List<List<E>> chunks = [];
 
@@ -10,6 +14,10 @@ extension HandyListExtensions<E> on List<E> {
     return chunks;
   }
 
+  /// Same
+  ///
+  /// Basically checks if two lists / arrays are the same
+  /// despite being ordered differently i.e. if they have the same equal elements
   bool same(List<E> items) {
     if (length != items.length) return false;
     bool isTheSame = true;
