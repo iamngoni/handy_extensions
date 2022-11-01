@@ -1,3 +1,5 @@
+import 'dart:math';
+
 extension HandyListExtensions<E> on List<E> {
   /// Partition
   ///
@@ -29,5 +31,31 @@ extension HandyListExtensions<E> on List<E> {
     }
 
     return isTheSame;
+  }
+
+  /// Random Item
+  ///
+  /// Returns a random item from the list
+  E randomItem() {
+    return this[Random().nextInt(length)];
+  }
+
+  /// Random Items
+  ///
+  /// Returns a list of random items from the list without duplicates
+  List<E> randomItems({int count = 1}) {
+    List<E> items = [];
+
+    for (int i = 0; i < count; i++) {
+      E item = randomItem();
+
+      if (items.contains(item)) {
+        i--;
+      } else {
+        items.add(item);
+      }
+    }
+
+    return items;
   }
 }
