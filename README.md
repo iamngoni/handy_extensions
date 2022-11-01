@@ -110,6 +110,12 @@ List<String> list = ['a', 'b', 'c'];
 String? character = list.firstWhereOrNull( (String item) => item == 'a'); // => 'a' (String) or null (null)
 ```
 
+#### GroupBy
+
+```dart
+[1,2,3,4,5,6].groupBy((i) => i % 2 == 0); // {true: [2, 4, 6], false: [1, 3, 5]}
+```
+
 ### String
 
 #### Country Emoji
@@ -154,12 +160,6 @@ String headingCase = heading.headingCase; // => Hello World
 // Will return a list of random items from the list of type T. By default this may return a
 // list with only one item
 ["Hello", "World", "iAMNGONI"].randomItems(count: 2);
-```
-
-#### GroupBy
-
-```dart
-[1,2,3,4,5,6].groupBy((i) => i % 2 == 0); // {true: [2, 4, 6], false: [1, 3, 5]}
 ```
 
 ### General
