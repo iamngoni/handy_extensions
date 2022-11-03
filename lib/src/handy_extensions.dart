@@ -4,3 +4,4 @@ export 'general.dart';
 export 'iteration.dart';
 export 'list.dart';
 export 'string.dart';
+export 'int.dart';
