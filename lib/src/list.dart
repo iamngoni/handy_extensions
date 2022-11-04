@@ -1,10 +1,20 @@
 import 'dart:math';
 
 extension HandyListExtensions<E> on List<E> {
-  /// Partition
+  /// **partition**
   ///
   /// Splits a [List] into the separate list chunks depending on the
   /// specified [chunkSize]. Chunk size will default to 2
+  ///
+  /// Usage:
+  /// ```dart
+  /// List<String> words = ["Hello", "World", "Name", "Is", "Ngoni"]
+  /// List<List<String>> partitionedWords = words.partition(chunkSize: 2)
+  /// ```
+  /// Result:
+  /// ```
+  /// [["Hello", "World"], ["Name", "Is"], ["Ngoni"]]
+  /// ```
   List<List<E>> partition({int chunkSize = 2}) {
     List<List<E>> chunks = [];
 
@@ -16,10 +26,21 @@ extension HandyListExtensions<E> on List<E> {
     return chunks;
   }
 
-  /// Same
+  /// **same**
   ///
   /// Basically checks if two lists / arrays are the same
   /// despite being ordered differently i.e. if they have the same equal elements
+  ///
+  /// Usage:
+  /// ```dart
+  /// List<String> words = ["Hello", "World"]
+  /// List<String> otherWords = ["World", "Hello"]
+  /// print(words.same(otherWords))
+  /// ```
+  /// Result:
+  /// ```
+  /// true
+  /// ```
   bool same(List<E> items) {
     if (length != items.length) return false;
     bool isTheSame = true;
@@ -33,16 +54,28 @@ extension HandyListExtensions<E> on List<E> {
     return isTheSame;
   }
 
-  /// Random Item
+  /// **randomItem**
   ///
-  /// Returns a random item from the list
+  /// Return random item from the list.
+  ///
+  /// Usage:
+  /// ```dart
+  /// List<String> words = ["Hello", "World", "Name", "Is", "Ngoni"]
+  /// String randomWord = words.randomItem()
+  /// ```
   E randomItem() {
     return this[Random().nextInt(length)];
   }
 
-  /// Random Items
+  /// **randomItems**
   ///
-  /// Returns a list of random items from the list without duplicates
+  /// Return random items from the list.
+  ///
+  /// Usage:
+  /// ```dart
+  /// List<String> words = ["Hello", "World", "Name", "Is", "Ngoni"]
+  /// List<String> randomWords = words.randomItems(count: 2)
+  /// ```
   List<E> randomItems({int count = 1}) {
     List<E> items = [];
 
@@ -59,6 +92,16 @@ extension HandyListExtensions<E> on List<E> {
     return items;
   }
 
+  ///  **firstWhereOrNull**
+  ///
+  /// Tries to find an element [E] using the given condition
+  /// else it will return null.
+  ///
+  /// Usage:
+  /// ```dart
+  /// List<String> items = ["Hello", "World"];
+  /// String? word = items.firstWhereOrNull((String element) => element == "Hello")
+  /// ```
   E? firstWhereOrNull(bool Function(E) test) {
     for (E element in this) {
       if (test(element)) return element;
@@ -66,6 +109,31 @@ extension HandyListExtensions<E> on List<E> {
     return null;
   }
 
+  /// **groupBy**
+  ///
+  /// Group list elements into a map  using the given
+  /// condition.
+  ///
+  /// Usage:
+  /// ```dart
+  ///   [
+  ///      {"title";: "Avengers", "release_date": "10/01/2019"},
+  ///      {"title": "Creed", "release_date": "10/01/2019"},
+  ///      {"title": "Jumanji", "release_date": "30/10/2019"},
+  ///   ].groupBy((m) => m["release_date"])
+  /// ```
+  /// Result:
+  /// ```json
+  ///   {
+  ///      "10/01/2019": [
+  ///        {"title": "Avengers", "release_date": "10/01/2019"},
+  ///        {"title": "Creed", "release_date": "10/01/2019"}
+  ///      ],
+  ///      "30/10/2019": [
+  ///        {"title": "Jumanji", "release_date": "30/10/2019"},
+  ///      ]
+  ///   }
+  /// ```
   Map<T, List<E>> groupBy<T>(T Function(E) keyFunction) {
     return fold(
       <T, List<E>>{},
