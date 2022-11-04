@@ -57,4 +57,10 @@ void main() {
       },
     );
   });
+
+  test("swap", () {
+    List<String> words = ["Hello", "World"];
+    words.swap(0, 1);
+    expect(words, ["World", "Hello"]);
+  });
 }

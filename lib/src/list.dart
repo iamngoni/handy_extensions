@@ -141,4 +141,24 @@ extension HandyListExtensions<E> on List<E> {
           map..putIfAbsent(keyFunction(element), () => <E>[]).add(element),
     );
   }
+
+  /// **swap**
+  ///
+  /// Swap items in list
+  ///
+  /// Usage:
+  /// ```dart
+  /// List<String> words = ["Hello", "World", "Name", "Is", "Ngoni"]
+  /// words.swap(0, 3)
+  /// ```
+  ///
+  /// Result:
+  /// ```
+  /// ["Name", "World", "Name", "Is", "Ngoni"]
+  /// ```
+  void swap(int index1, int index2) {
+    E tmp = this[index1];
+    this[index1] = this[index2];
+    this[index2] = tmp;
+  }
 }
