@@ -26,6 +26,9 @@ extension HandyListExtensions<E> on List<E> {
     return chunks;
   }
 
+  // TODO: partitionWhen
+  // TODO: multiSortMethods
+
   /// **same**
   ///
   /// Basically checks if two lists / arrays are the same

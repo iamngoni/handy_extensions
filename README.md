@@ -20,9 +20,9 @@ Handy Extension is just a simple library with extensions to the core libraries t
 
 - [BuildContext](https://api.flutter.dev/flutter/widgets/BuildContext-class.html)
 - [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
-- [double](https://api.flutter.dev/flutter/dart-core/double-class.html)
-- [Iteration](https://api.flutter.dev/flutter/dart-core/Iterator-class.html)
+- [int](https://api.flutter.dev/flutter/dart-core/int-class.html)
 - [List](https://api.flutter.dev/flutter/dart-core/List-class.html)
+- [DateTime](https://api.flutter.dev/flutter/dart-core/DateTime-class.html)
 
 ## Getting started
 
@@ -76,46 +76,6 @@ context.height;
 context.width;
 ```
 
-### double
-
-> Makes use of this package [money_formatter](https://pub.dev/packages/money_formatter)
-
-#### Get Your Double Formatted As Money using the money property
-
-```dart
-10.money.symbolOnLeft; // => $ 10.00 (String)
-1000.money.compactSymbolOnLeft; // => $ 1K (String)
-```
-
-#### Get comparison methods on your double using the compare property
-
-```dart
-10.compare.isEqual(10); // => true (bool)
-```
-
-Available methods for comparison:
-
-- [isEqual](https://pub.dev/documentation/money_formatter/latest/money_formatter/MoneyFormatterCompare/isEqual.html)
-- [isEqualOrGreaterThan](https://pub.dev/documentation/money_formatter/latest/money_formatter/MoneyFormatterCompare/isEqualOrGreaterThan.html)
-- [isEqualOrLowerThan](https://pub.dev/documentation/money_formatter/latest/money_formatter/MoneyFormatterCompare/isEqualOrLowerThan.html)
-- [isGreaterThan](https://pub.dev/documentation/money_formatter/latest/money_formatter/MoneyFormatterCompare/isGreaterThan.html)
-- [isLowerThan](https://pub.dev/documentation/money_formatter/latest/money_formatter/MoneyFormatterCompare/isLowerThan.html)
-
-### Iteration
-
-#### firstWhereOrNull
-
-```dart
-List<String> list = ['a', 'b', 'c'];
-String? character = list.firstWhereOrNull( (String item) => item == 'a'); // => 'a' (String) or null (null)
-```
-
-#### GroupBy
-
-```dart
-[1,2,3,4,5,6].groupBy((i) => i % 2 == 0); // {true: [2, 4, 6], false: [1, 3, 5]}
-```
-
 ### String
 
 #### Country Emoji
@@ -160,6 +120,19 @@ String headingCase = heading.headingCase; // => Hello World
 // Will return a list of random items from the list of type T. By default this may return a
 // list with only one item
 ["Hello", "World", "iAMNGONI"].randomItems(count: 2);
+```
+
+#### firstWhereOrNull
+
+```dart
+List<String> list = ['a', 'b', 'c'];
+String? character = list.firstWhereOrNull( (String item) => item == 'a'); // => 'a' (String) or null (null)
+```
+
+#### groupBy
+
+```dart
+[1,2,3,4,5,6].groupBy((i) => i % 2 == 0); // {true: [2, 4, 6], false: [1, 3, 5]}
 ```
 
 ### General
