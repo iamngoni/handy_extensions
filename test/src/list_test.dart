@@ -63,4 +63,9 @@ void main() {
     words.swap(0, 1);
     expect(words, ["World", "Hello"]);
   });
+
+  test("hasDuplicates", () {
+    expect([1, 2, 3, 4, 5, 6].hasDuplicates(), false);
+    expect([1, 2, 3, 4, 5, 6, 1].hasDuplicates(), true);
+  });
 }

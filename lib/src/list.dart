@@ -164,4 +164,22 @@ extension HandyListExtensions<E> on List<E> {
     this[index1] = this[index2];
     this[index2] = tmp;
   }
+
+  /// **hasDuplicates**
+  ///
+  /// Checks if there are any duplicates in the list
+  ///
+  /// Usage:
+  /// ```dart
+  /// List<String> words = ["Hello", "World", "Name", "Is", "World"]
+  /// words.hasDuplicates()
+  /// ```
+  ///
+  /// Result:
+  /// ```
+  /// true
+  /// ```
+  bool hasDuplicates() {
+    return length != toSet().length;
+  }
 }
