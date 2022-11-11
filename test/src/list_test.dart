@@ -64,6 +64,12 @@ void main() {
     expect(words, ["World", "Hello"]);
   });
 
+  test("swapRange", () {
+    List<String> words = ["Hello", "World", "How", "Are", "You"];
+    words.swapRange(0, 2, 3);
+    expect(words, ["Are", "You", "How", "Hello", "World"]);
+  });
+
   test("hasDuplicates", () {
     expect([1, 2, 3, 4, 5, 6].hasDuplicates(), false);
     expect([1, 2, 3, 4, 5, 6, 1].hasDuplicates(), true);

@@ -23,18 +23,4 @@ extension HandyStringExtension on String {
 
     return words.join(' ');
   }
-
-  /// **md5**
-  ///
-  /// Create md5 hash from string
-  ///
-  /// Usage:
-  /// ```dart
-  /// String name = "abcdefghiklmnopqrstuvwxyz";
-  /// String md5hash = name.md5;
-  /// ```
-  /// TODO: implement md5 hashing here
-  String get md5 {
-    return "";
-  }
 }
