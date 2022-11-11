@@ -1,8 +1,14 @@
+## 0.0.8
+
+- Added `List.swap` and `List.swapRange` methods.
+- Added `List.hasDuplicates` getter.
+- Added `int.microsecond`, `int.milliseconds`, `int.seconds`, `int.minutes`, `int.hours`, `int.days` getters.
+
 ## 0.0.7
 
-- groupBy: group iterable items using given condition
-- randomItem: get random item from list
-- randomItems: get list of random items from list using specified count
+- Added `List.groupBy` method.
+- Added `List.randomItem` method.
+- Added `List.randomItems` method.
 - **Breaking Changes**: removed extensions for double which were making use of the money formatter package
 
 ## 0.0.6

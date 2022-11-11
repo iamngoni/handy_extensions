@@ -135,6 +135,77 @@ String? character = list.firstWhereOrNull( (String item) => item == 'a'); // => 
 [1,2,3,4,5,6].groupBy((i) => i % 2 == 0); // {true: [2, 4, 6], false: [1, 3, 5]}
 ```
 
+#### swap
+
+```dart
+List<int> list = [1, 2, 3, 4, 5];
+list.swap(0, 4); // [5, 2, 3, 4, 1]
+```
+
+#### swapRange
+
+```dart
+List<int> list = [1, 2, 3, 4, 5];
+list.swapRange(0, 2, 3); // [4, 5, 3, 1, 2]
+```
+
+#### hasDuplicates
+
+```dart
+List<int> list = [1, 2, 3, 4, 5, 1];
+list.hasDuplicates; // true
+```
+
+### Int
+
+#### microsecond
+
+```dart
+Duration microsecond = 1.microsecond; // => 1
+```
+
+#### milliseconds
+
+```dart
+Duration milliseconds = 1.milliseconds; // => 1
+```
+
+#### seconds
+
+```dart
+Duration seconds = 1.seconds; // => 1
+```
+
+#### minutes
+
+```dart
+Duration minutes = 1.minutes; // => 1
+```
+
+#### hours
+
+```dart
+Duration hours = 1.hours; // => 1
+```
+
+#### days
+
+```dart
+Duration days = 1.days; // => 1
+```
+
+#### weeks
+
+```dart
+Duration weeks = 1.weeks; // => 1
+```
+
+#### Example usage of the above duration items
+
+```dart
+Duration duration = 1.weeks + 2.days + 3.hours + 4.minutes + 5.seconds + 6.milliseconds + 7.microseconds;
+```
+
 ### General
 
 #### Check if variable is null

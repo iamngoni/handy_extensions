@@ -29,4 +29,11 @@ void main() {
   test("weeks", () {
     expect(30.weeks, const Duration(days: 210));
   });
+
+  test("all at work", () {
+    expect(
+      30.weeks + 2.days + 4.hours + 50.minutes,
+      const Duration(days: 212, hours: 4, minutes: 50),
+    );
+  });
 }

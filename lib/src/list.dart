@@ -157,12 +157,32 @@ extension HandyListExtensions<E> on List<E> {
   ///
   /// Result:
   /// ```
-  /// ["Name", "World", "Name", "Is", "Ngoni"]
+  /// ["Name", "World", "Hello", "Is", "Ngoni"]
   /// ```
   void swap(int index1, int index2) {
     E tmp = this[index1];
     this[index1] = this[index2];
     this[index2] = tmp;
+  }
+
+  /// **swapRange**
+  ///
+  /// Swap items in list using the given range
+  ///
+  /// Usage:
+  /// ```dart
+  /// List<String> words = ["Hello", "World", "Name", "Is", "Ngoni"]
+  /// words.swapRange(0, 3, 2)
+  /// ```
+  ///
+  /// Result:
+  /// ```
+  /// ["Name", "World", "Hello", "Is", "Ngoni"]
+  /// ```
+  void swapRange(int start, int end, int newStart) {
+    List<E> tmp = sublist(start, end);
+    replaceRange(start, end, sublist(newStart, newStart + (end - start)));
+    replaceRange(newStart, newStart + (end - start), tmp);
   }
 
   /// **hasDuplicates**
