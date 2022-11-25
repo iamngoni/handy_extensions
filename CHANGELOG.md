@@ -1,4 +1,4 @@
-## 0.0.9
+## 0.0.8+1
 
 - Updated `DateTime.timeAgo` method to cater for negative difference in days.
 
