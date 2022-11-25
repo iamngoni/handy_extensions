@@ -1,3 +1,7 @@
+## 0.0.9
+
+- Updated `DateTime.timeAgo` method to cater for negative difference in days.
+
 ## 0.0.8
 
 - Added `List.swap` and `List.swapRange` methods.
