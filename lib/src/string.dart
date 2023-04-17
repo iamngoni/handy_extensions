@@ -23,4 +23,9 @@ extension HandyStringExtension on String {
 
     return words.join(' ');
   }
+
+  /// Checks whether string is numeric
+  bool get isNumeric {
+    return double.tryParse(this) != null;
+  }
 }

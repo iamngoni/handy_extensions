@@ -1,3 +1,7 @@
+## 0.0.9
+
+- new `String.isNumeric` method
+
 ## 0.0.8+1
 
 - Updated `DateTime.timeAgo` method to cater for negative difference in days.
