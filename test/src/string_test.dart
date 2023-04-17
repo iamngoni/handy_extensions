@@ -13,4 +13,14 @@ void main() {
   test("countryEmoji", () {
     expect("ZW".countryEmoji, "🇿🇼");
   });
+
+  group("isNumeric", () {
+    test("fail", () {
+      expect("ZW".isNumeric, false);
+    });
+
+    test("success", () {
+      expect("1".isNumeric, true);
+    });
+  });
 }
