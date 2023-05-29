@@ -1,3 +1,8 @@
+## 0.0.91
+
+- use Very Good Analysis for linting
+- change `BuildContext.notify` success color to `Colors.green`
+
 ## 0.0.9
 
 - new `String.isNumeric` method
