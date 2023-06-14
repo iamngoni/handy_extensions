@@ -219,12 +219,17 @@ extension HandyListExtensions<E> on List<E> {
   /// ```
   List<List<E>> splitInto({int chunkSize = 2}) {
     List<List<E>> subLists = [];
-    int size = (length / chunkSize).ceil();
-    for (int i = 0; i < length; i += size) {
-      List<E> sublist = this.sublist(i, i + size);
-      subLists.add(sublist);
-    }
+    int size = this.length;
+    int minLengthForEachSubList = size ~/ chunkSize;
 
+    for (int i = 0; i < chunkSize; i++) {
+      int start = i * minLengthForEachSubList;
+      int end = (i + 1) * minLengthForEachSubList;
+      if (i == chunkSize - 1) {
+        end = size;
+      }
+      subLists.add(this.sublist(start, end));
+    }
     return subLists;
   }
 }

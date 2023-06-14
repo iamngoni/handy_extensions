@@ -1,3 +1,7 @@
+## 0.1.1+1
+
+- fix `List.splitInto` method
+
 ## 0.1.1
 
 - new `List.splitInto` method

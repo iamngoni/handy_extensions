@@ -75,9 +75,31 @@ void main() {
   });
 
   test('splitInto', () {
-    expect([1, 2, 3, 4, 5, 6].splitInto(chunkSize: 2), [
-      [1, 2, 3],
-      [4, 5, 6],
-    ]);
+    List<String> interests = [
+      'Innovation',
+      'Lifestyle',
+      'Fashion',
+      'Business',
+      'Travel & Tourism',
+      'Sports',
+      'Entertainment',
+      'Research & Education',
+      'Agriculture',
+      'Health & Fitness',
+      'Politics',
+      'History & Culture',
+      'Technology',
+      'Science',
+      'Finance',
+      'Food & Drink',
+      'Music',
+      'Arts & Crafts',
+      'Gaming',
+    ];
+    List<List<String>> chunks = interests.splitInto(chunkSize: 3);
+    expect(chunks.length, 3);
+    expect(chunks[0].length, 6);
+    expect(chunks[1].length, 6);
+    expect(chunks[2].length, 7);
   });
 }
