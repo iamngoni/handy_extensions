@@ -59,6 +59,10 @@ extension HandyDateTimeExtension on DateTime {
     final currentTime = DateTime.now();
     final difference = currentTime.difference(this);
 
+    if (difference.inDays < 0) {
+      return "${difference.inDays.abs()}d remaining";
+    }
+
     if (difference.inDays >= 1) {
       return "${difference.inDays}d";
     } else if (difference.inHours >= 1) {

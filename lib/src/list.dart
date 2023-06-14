@@ -202,4 +202,29 @@ extension HandyListExtensions<E> on List<E> {
   bool hasDuplicates() {
     return length != toSet().length;
   }
+
+  /// **splitInto**
+  ///
+  /// Splits a list into a list of lists
+  ///
+  /// Usage:
+  /// ```dart
+  /// List<String> words = ["Hello", "World", "Name", "Is", "World"]
+  /// words.splitInto(chunkSize: 2)
+  /// ```
+  ///
+  /// Result:
+  /// ```
+  /// [["Hello", "World"], ["Name", "Is", "World"]]
+  /// ```
+  List<List<E>> splitInto({int chunkSize = 2}) {
+    List<List<E>> subLists = [];
+    int size = (length / chunkSize).ceil();
+    for (int i = 0; i < length; i += size) {
+      List<E> sublist = this.sublist(i, i + size);
+      subLists.add(sublist);
+    }
+
+    return subLists;
+  }
 }

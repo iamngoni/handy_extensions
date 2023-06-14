@@ -1,3 +1,20 @@
+## 0.1.1
+
+- new `List.splitInto` method
+
+## 0.1.0
+
+- use Very Good Analysis for linting
+- change `BuildContext.notify` success color to `Colors.green`
+
+## 0.0.9
+
+- new `String.isNumeric` method
+
+## 0.0.8+1
+
+- Updated `DateTime.timeAgo` method to cater for negative difference in days.
+
 ## 0.0.8
 
 - Added `List.swap` and `List.swapRange` methods.

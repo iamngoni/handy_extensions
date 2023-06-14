@@ -73,7 +73,7 @@ extension HandyContextExtension on BuildContext {
             ),
         duration: duration ?? const Duration(seconds: 3),
         backgroundColor:
-            backgroundColor ?? (isError ? Colors.red : Colors.grey),
+            backgroundColor ?? (isError ? Colors.red : Colors.green),
       ),
     );
   }
