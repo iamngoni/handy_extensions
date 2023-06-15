@@ -1,3 +1,7 @@
+## 0.1.2
+
+- add `DateTime.timeOfDay` and `DateTime.timeOfDayEmoji` methods
+
 ## 0.1.1+1
 
 - fix `List.splitInto` method

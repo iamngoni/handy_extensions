@@ -32,5 +32,5 @@ extension HandyIntExtension on int {
   /// **weeks**
   ///
   /// Returns a [Duration] with the given number of weeks.
-  Duration get weeks => Duration(days: (this * 7));
+  Duration get weeks => Duration(days: this * 7);
 }

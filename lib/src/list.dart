@@ -83,7 +83,7 @@ extension HandyListExtensions<E> on List<E> {
     List<E> items = [];
 
     for (int i = 0; i < count; i++) {
-      E item = randomItem();
+      final E item = randomItem();
 
       if (items.contains(item)) {
         i--;
@@ -160,7 +160,7 @@ extension HandyListExtensions<E> on List<E> {
   /// ["Name", "World", "Hello", "Is", "Ngoni"]
   /// ```
   void swap(int index1, int index2) {
-    E tmp = this[index1];
+    final E tmp = this[index1];
     this[index1] = this[index2];
     this[index2] = tmp;
   }
@@ -219,16 +219,16 @@ extension HandyListExtensions<E> on List<E> {
   /// ```
   List<List<E>> splitInto({int chunkSize = 2}) {
     List<List<E>> subLists = [];
-    int size = this.length;
-    int minLengthForEachSubList = size ~/ chunkSize;
+    final int size = length;
+    final int minLengthForEachSubList = size ~/ chunkSize;
 
     for (int i = 0; i < chunkSize; i++) {
-      int start = i * minLengthForEachSubList;
+      final int start = i * minLengthForEachSubList;
       int end = (i + 1) * minLengthForEachSubList;
       if (i == chunkSize - 1) {
         end = size;
       }
-      subLists.add(this.sublist(start, end));
+      subLists.add(sublist(start, end));
     }
     return subLists;
   }

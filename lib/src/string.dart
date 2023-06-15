@@ -1,8 +1,8 @@
 extension HandyStringExtension on String {
   /// Returns a new string with the flag of the specified country code.
   String get countryEmoji {
-    List<String> characters = toUpperCase().split('');
-    Iterable<int> characterCodes =
+    final List<String> characters = toUpperCase().split('');
+    final Iterable<int> characterCodes =
         characters.map((String char) => 127397 + char.codeUnits.first);
     return String.fromCharCodes(characterCodes);
   }
@@ -16,8 +16,8 @@ extension HandyStringExtension on String {
 
   /// Returns a new string with the first character of each word as upper case
   String get headingCase {
-    List<String> words = split(' ');
-    for (String word in words) {
+    final List<String> words = split(' ');
+    for (final String word in words) {
       words[words.indexOf(word)] = word.titleCase;
     }
 

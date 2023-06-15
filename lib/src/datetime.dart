@@ -1,22 +1,25 @@
-import 'package:handy_extensions/src/utils/constants.dart';
+import 'utils/constants.dart';
 
 extension HandyDateTimeExtension on DateTime {
   /// Readable Date
   ///
   /// Returns date string in the format Tuesday 1 January 2022
-  String get readableDate => "$getDay $getDate $getMonth $getYear";
+  String get readableDate => '$getDay $getDate $getMonth $getYear';
 
   /// Readable DateTime
   ///
   /// Returns date and time string in the format January 12, 2022 08:00:15
   String get readableDateTime =>
-      "$getMonth $getDate, $getYear ${hour >= 10 ? hour : "0$hour"}:${minute >= 10 ? minute : "0$minute"}:${second >= 10 ? second : "0$second"}";
+      "$getMonth $getDate, $getYear ${hour >= 10 ? hour : "0$hour"}"
+      ":${minute >= 10 ? minute : "0$minute"}:${second >= 10 ? second : "0"
+          "$second"}";
 
   /// Readable Time
   ///
   /// Returns time string in the format 08:00:34
   String get readableTime =>
-      "${hour >= 10 ? hour : "0$hour"}:${minute >= 10 ? minute : "0$minute"}:${second >= 10 ? second : "0$second"}";
+      "${hour >= 10 ? hour : "0$hour"}:${minute >= 10 ? minute : "0$minute"}"
+      ":${second >= 10 ? second : "0$second"}";
 
   /// Get Day
   ///
@@ -49,7 +52,7 @@ extension HandyDateTimeExtension on DateTime {
   /// Get Year
   ///
   /// Returns year in the format 2020, 2021 etc
-  String get getYear => "$year";
+  String get getYear => '$year';
 
   /// Time Ago
   ///
@@ -60,19 +63,59 @@ extension HandyDateTimeExtension on DateTime {
     final difference = currentTime.difference(this);
 
     if (difference.inDays < 0) {
-      return "${difference.inDays.abs()}d remaining";
+      return '${difference.inDays.abs()}d remaining';
     }
 
     if (difference.inDays >= 1) {
-      return "${difference.inDays}d";
+      return '${difference.inDays}d';
     } else if (difference.inHours >= 1) {
-      return "${difference.inHours}h";
+      return '${difference.inHours}h';
     } else if (difference.inMinutes >= 1) {
-      return "${difference.inMinutes}m";
+      return '${difference.inMinutes}m';
     } else if (difference.inSeconds >= 1) {
-      return "${difference.inSeconds}s";
+      return '${difference.inSeconds}s';
     } else {
-      return "Just now";
+      return 'Just now';
+    }
+  }
+
+  /// Time Of Day
+  ///
+  /// Returns time of day in the format Morning, Afternoon, Evening or Night
+  ///
+  /// Usage:
+  ///
+  /// ```dart
+  /// DateTime.now().timeOfDay
+  /// ```
+  ///
+  /// Result:
+  ///
+  /// ```dart
+  /// Morning
+  /// ```
+  ///
+  String get timeOfDay {
+    if (hour >= 0 && hour < 12) {
+      return 'Morning';
+    } else if (hour >= 12 && hour < 16) {
+      return 'Afternoon';
+    } else if (hour >= 16 && hour < 20) {
+      return 'Evening';
+    } else {
+      return 'Night';
+    }
+  }
+
+  String get timeOfDayEmoji {
+    if (hour >= 0 && hour < 12) {
+      return '🌤️';
+    } else if (hour >= 12 && hour < 16) {
+      return '🌤️';
+    } else if (hour >= 16 && hour < 20) {
+      return '🌙';
+    } else {
+      return '🌙';
     }
   }
 }
