@@ -1,3 +1,7 @@
+## 0.1.3+1
+
+- fix `Widget.inkWell` method
+
 ## 0.1.3
 
 - add `Widget.inkWell` method
