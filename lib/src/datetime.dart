@@ -107,6 +107,22 @@ extension HandyDateTimeExtension on DateTime {
     }
   }
 
+  /// Time Of Day Emoji
+  ///
+  /// Returns emoji of time of day in the format 🌤️, 🌤️, 🌙 or 🌙
+  ///
+  /// Usage:
+  ///
+  /// ```dart
+  /// DateTime.now().timeOfDayEmoji
+  /// ```
+  ///
+  /// Result:
+  ///
+  /// ```dart
+  /// 🌤️
+  /// ```
+  ///
   String get timeOfDayEmoji {
     if (hour >= 0 && hour < 12) {
       return '🌤️';
@@ -117,5 +133,25 @@ extension HandyDateTimeExtension on DateTime {
     } else {
       return '🌙';
     }
+  }
+
+  /// Is Between
+  ///
+  /// Returns true if the given [DateTime] is between the given start and end [DateTime]
+  ///
+  /// Usage:
+  ///
+  /// ```dart
+  /// DateTime.now().isBetween(DateTime(2021, 1, 1), DateTime(2021, 12, 31))
+  /// ```
+  ///
+  /// Result:
+  ///
+  /// ```dart
+  /// true
+  /// ```
+  ///
+  bool isBetween(DateTime start, DateTime end) {
+    return isAfter(start) && isBefore(end);
   }
 }

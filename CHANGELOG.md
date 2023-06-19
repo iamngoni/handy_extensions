@@ -1,3 +1,7 @@
+## 0.1.4
+
+- add `DateTime.isBetween` method
+
 ## 0.1.3+1
 
 - fix `Widget.inkWell` method
