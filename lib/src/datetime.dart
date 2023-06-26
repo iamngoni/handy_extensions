@@ -1,4 +1,5 @@
 import 'utils/constants.dart';
+import 'utils/format_time.dart';
 
 extension HandyDateTimeExtension on DateTime {
   /// Readable Date
@@ -153,5 +154,23 @@ extension HandyDateTimeExtension on DateTime {
   ///
   bool isBetween(DateTime start, DateTime end) {
     return isAfter(start) && isBefore(end);
+  }
+
+  String get timeFormat {
+    return formatTime(this);
+  }
+
+  String get describe {
+    final DateTime now = DateTime.now();
+    final difference = now.difference(this).inDays;
+    if (difference == 0) {
+      return timeFormat;
+    } else if (difference == 1) {
+      return 'Yesterday';
+    } else if (difference <= 7) {
+      return getDay;
+    } else {
+      return '$getDate/$getMonth/$getYear';
+    }
   }
 }

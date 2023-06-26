@@ -1,3 +1,8 @@
+## 0.1.5
+
+- add `DateTime.describe` method
+- add `DateTime.timeFormat` method
+
 ## 0.1.4
 
 - add `DateTime.isBetween` method
