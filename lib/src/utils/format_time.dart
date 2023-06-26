@@ -13,6 +13,8 @@ String formatTime(DateTime dateTime) {
   final String period = hour >= 12 ? 'PM' : 'AM';
   int hourIn12HourFormat = hour > 12 ? hour - 12 : hour;
   hourIn12HourFormat = hourIn12HourFormat == 0 ? 12 : hourIn12HourFormat;
+  final String hourStr = hourIn12HourFormat.toString().padLeft(2, '0');
+  final String minuteStr = minute.toString().padLeft(2, '0');
 
-  return '$hourIn12HourFormat:$minute$period';
+  return '$hourStr:$minuteStr$period';
 }

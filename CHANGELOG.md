@@ -1,3 +1,7 @@
+## 0.1.5+1
+
+- fix `DateTime.timeFormat` method, pad hours & minutes with 0
+
 ## 0.1.5
 
 - add `DateTime.describe` method
