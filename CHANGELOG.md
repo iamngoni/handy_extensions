@@ -1,3 +1,7 @@
+## 0.1.5+2
+
+- add `DateTime.readableDateTimeFormat` method
+
 ## 0.1.5+1
 
 - fix `DateTime.timeFormat` method, pad hours & minutes with 0

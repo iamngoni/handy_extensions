@@ -156,10 +156,61 @@ extension HandyDateTimeExtension on DateTime {
     return isAfter(start) && isBefore(end);
   }
 
+  /// Time Format
+  ///
+  /// Returns time string in the format 08:00pm
+  ///
+  /// Usage:
+  ///
+  /// ```dart
+  /// DateTime.now().timeFormat
+  /// ```
+  ///
+  /// Result:
+  ///
+  /// ```dart
+  /// 08:00pm
+  /// ```
+  ///
   String get timeFormat {
     return formatTime(this);
   }
 
+  /// Readable Date Time Format
+  ///
+  /// Returns date and time string in the format Tuesday 1 January 2022, 08:00pm
+  ///
+  /// Usage:
+  ///
+  /// ```dart
+  /// DateTime.now().readableDateTimeFormat
+  /// ```
+  ///
+  /// Result:
+  ///
+  /// ```dart
+  /// Tuesday 1 January 2022, 08:00pm
+  /// ```
+  String get readableDateTimeFormat {
+    return '$readableDate, $timeFormat';
+  }
+
+  /// Describe
+  ///
+  /// Returns date string in the format 08:00pm, Yesterday, Monday, 1/1/2022
+  ///
+  /// Usage:
+  ///
+  /// ```dart
+  /// DateTime.now().describe
+  /// ```
+  ///
+  /// Result:
+  ///
+  /// ```dart
+  /// 08:00pm
+  /// ```
+  ///
   String get describe {
     final DateTime now = DateTime.now();
     final difference = now.difference(this).inDays;
