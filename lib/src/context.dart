@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-extension HandyContextExtension on BuildContext {
+extension HandyContextExtension<T> on BuildContext {
   /// Height
   ///
   /// Returns height of device screen (y-axis)
@@ -16,16 +16,22 @@ extension HandyContextExtension on BuildContext {
   /// [page] is the page to navigate to
   /// [replace=false] if true, the current page will be replaced by the new page
   ///
-  goTo({
+  Future<T?> goTo({
     required Widget page,
     bool replace = false,
   }) {
     return replace
         ? Navigator.of(this).pushReplacement(
-            MaterialPageRoute(builder: (context) => page),
+            MaterialPageRoute(
+              builder: (context) => page,
+              settings: RouteSettings(name: page.toStringShort()),
+            ),
           )
         : Navigator.of(this).push(
-            MaterialPageRoute(builder: (context) => page),
+            MaterialPageRoute(
+              builder: (context) => page,
+              settings: RouteSettings(name: page.toStringShort()),
+            ),
           );
   }
 
@@ -33,7 +39,7 @@ extension HandyContextExtension on BuildContext {
   ///
   /// [value] is the value to pass to the previous page
   ///
-  goBack({dynamic value}) {
+  void goBack({dynamic value}) {
     return Navigator.of(this).pop(value);
   }
 
@@ -41,7 +47,7 @@ extension HandyContextExtension on BuildContext {
   ///
   /// [page] is the page to navigate to
   ///
-  goToRefresh({required Widget page}) {
+  Future<T?> goToRefresh({required Widget page}) {
     return Navigator.of(this).pushAndRemoveUntil(
       MaterialPageRoute(builder: (context) => page),
       (route) => false,
@@ -54,7 +60,7 @@ extension HandyContextExtension on BuildContext {
   /// [duration] is the duration of the notification -> Defaults to 3 seconds
   /// [backgroundColor] is the background color of the notification -> Defaults to grey or red if it's an error
   /// [textColor] is the text color of the notification -> Defaults to white
-  notify({
+  void notify({
     required String message,
     Widget? content,
     Color? backgroundColor,

@@ -1,3 +1,7 @@
+## 0.1.5+3
+
+- fix `BuildContext.push` methods to add route settings
+
 ## 0.1.5+2
 
 - add `DateTime.readableDateTimeFormat` method
