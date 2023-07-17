@@ -1,3 +1,7 @@
+## 0.1.6
+
+- remove `BuildContext` routing methods
+
 ## 0.1.5+3
 
 - fix `BuildContext.push` methods to add route settings
