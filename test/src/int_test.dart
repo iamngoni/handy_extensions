@@ -2,35 +2,35 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:handy_extensions/handy_extensions.dart';
 
 void main() {
-  test("microseconds", () {
+  test('microseconds', () {
     expect(30.microseconds, const Duration(microseconds: 30));
   });
 
-  test("milliseconds", () {
+  test('milliseconds', () {
     expect(30.milliseconds, const Duration(milliseconds: 30));
   });
 
-  test("seconds", () {
+  test('seconds', () {
     expect(30.seconds, const Duration(seconds: 30));
   });
 
-  test("minutes", () {
+  test('minutes', () {
     expect(30.minutes, const Duration(minutes: 30));
   });
 
-  test("hours", () {
+  test('hours', () {
     expect(30.hours, const Duration(hours: 30));
   });
 
-  test("days", () {
+  test('days', () {
     expect(30.days, const Duration(days: 30));
   });
 
-  test("weeks", () {
+  test('weeks', () {
     expect(30.weeks, const Duration(days: 210));
   });
 
-  test("all at work", () {
+  test('all at work', () {
     expect(
       30.weeks + 2.days + 4.hours + 50.minutes,
       const Duration(days: 212, hours: 4, minutes: 50),
