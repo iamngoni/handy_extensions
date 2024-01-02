@@ -1,3 +1,11 @@
+//
+//  string
+//  handy_extensions
+//
+//  Created by Ngonidzashe Mangudya on 12/10/2023.
+//  Copyright (c) 2023 ModestNerds, Co
+//
+
 extension HandyStringExtension on String {
   /// Returns a new string with the flag of the specified country code.
   String get countryEmoji {

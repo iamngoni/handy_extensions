@@ -1,3 +1,7 @@
+## 0.1.7
+
+- add `List.intersperse` method
+
 ## 0.1.6
 
 - remove `BuildContext` routing methods

@@ -6,7 +6,7 @@ void main() {
     expect([1, 2, 3, 4, 5, 6].partition(chunkSize: 2), [
       [1, 2],
       [3, 4],
-      [5, 6]
+      [5, 6],
     ]);
   });
 
@@ -38,7 +38,7 @@ void main() {
   test('groupBy', () {
     expect([1, 2, 3, 4, 5, 6].groupBy((e) => e.isEven), {
       true: [2, 4, 6],
-      false: [1, 3, 5]
+      false: [1, 3, 5],
     });
     expect(
       [
@@ -49,11 +49,11 @@ void main() {
       {
         '10/01/2019': [
           {'title': 'Avengers', 'release_date': '10/01/2019'},
-          {'title': 'Creed', 'release_date': '10/01/2019'}
+          {'title': 'Creed', 'release_date': '10/01/2019'},
         ],
         '30/10/2019': [
           {'title': 'Jumanji', 'release_date': '30/10/2019'},
-        ]
+        ],
       },
     );
   });
@@ -75,7 +75,7 @@ void main() {
   });
 
   test('splitInto', () {
-    List<String> interests = [
+    final List<String> interests = [
       'Innovation',
       'Lifestyle',
       'Fashion',
@@ -96,10 +96,17 @@ void main() {
       'Arts & Crafts',
       'Gaming',
     ];
-    List<List<String>> chunks = interests.splitInto(chunkSize: 3);
+    final List<List<String>> chunks = interests.splitInto(chunkSize: 3);
     expect(chunks.length, 3);
     expect(chunks[0].length, 6);
     expect(chunks[1].length, 6);
     expect(chunks[2].length, 7);
+  });
+
+  test('intersperse', () {
+    expect(
+      [1, 2, 3, 4, 5, 6].intersperse(0),
+      [1, 0, 2, 0, 3, 0, 4, 0, 5, 0, 6],
+    );
   });
 }

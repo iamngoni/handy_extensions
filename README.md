@@ -156,6 +156,14 @@ List<int> list = [1, 2, 3, 4, 5, 1];
 list.hasDuplicates; // true
 ```
 
+#### intersperse
+
+```dart
+List<int> list = [1, 2, 3, 4, 5, 1];
+list.intersperse(100);
+// [1, 100, 2, 100, 3, 100, 4, 100, 5, 100, 1]
+```
+
 ### Int
 
 #### microsecond

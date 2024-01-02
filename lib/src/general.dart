@@ -1,3 +1,12 @@
+//
+//
+//  general
+//  handy_extensions
+//
+//  Created by Ngonidzashe Mangudya on 12/10/2023.
+//  Copyright (c) 2023 ModestNerds, Co
+//
+
 extension HandyGeneralExtensions<T> on T {
   /// let
   ///

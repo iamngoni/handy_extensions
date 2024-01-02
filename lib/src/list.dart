@@ -1,3 +1,11 @@
+//
+//  list
+//  handy_extensions
+//
+//  Created by Ngonidzashe Mangudya on 12/10/2023.
+//  Copyright (c) 2023 ModestNerds, Co
+//
+
 import 'dart:math';
 
 extension HandyListExtensions<E> on List<E> {
@@ -16,11 +24,13 @@ extension HandyListExtensions<E> on List<E> {
   /// [["Hello", "World"], ["Name", "Is"], ["Ngoni"]]
   /// ```
   List<List<E>> partition({int chunkSize = 2}) {
-    List<List<E>> chunks = [];
+    final List<List<E>> chunks = [];
 
     for (int i = 0; i < length; i += chunkSize) {
-      chunks.add(sublist(i, (i + chunkSize) > length ? length : (i + chunkSize))
-          .toList());
+      chunks.add(
+        sublist(i, (i + chunkSize) > length ? length : (i + chunkSize))
+            .toList(),
+      );
     }
 
     return chunks;
@@ -48,7 +58,7 @@ extension HandyListExtensions<E> on List<E> {
     if (length != items.length) return false;
     bool isTheSame = true;
 
-    for (E item in items) {
+    for (final E item in items) {
       if (!contains(item)) {
         isTheSame = false;
       }
@@ -80,7 +90,7 @@ extension HandyListExtensions<E> on List<E> {
   /// List<String> randomWords = words.randomItems(count: 2)
   /// ```
   List<E> randomItems({int count = 1}) {
-    List<E> items = [];
+    final List<E> items = [];
 
     for (int i = 0; i < count; i++) {
       final E item = randomItem();
@@ -106,7 +116,7 @@ extension HandyListExtensions<E> on List<E> {
   /// String? word = items.firstWhereOrNull((String element) => element == "Hello")
   /// ```
   E? firstWhereOrNull(bool Function(E) test) {
-    for (E element in this) {
+    for (final E element in this) {
       if (test(element)) return element;
     }
     return null;
@@ -180,7 +190,7 @@ extension HandyListExtensions<E> on List<E> {
   /// ["Name", "World", "Hello", "Is", "Ngoni"]
   /// ```
   void swapRange(int start, int end, int newStart) {
-    List<E> tmp = sublist(start, end);
+    final List<E> tmp = sublist(start, end);
     replaceRange(start, end, sublist(newStart, newStart + (end - start)));
     replaceRange(newStart, newStart + (end - start), tmp);
   }
@@ -218,7 +228,7 @@ extension HandyListExtensions<E> on List<E> {
   /// [["Hello", "World"], ["Name", "Is", "World"]]
   /// ```
   List<List<E>> splitInto({int chunkSize = 2}) {
-    List<List<E>> subLists = [];
+    final List<List<E>> subLists = [];
     final int size = length;
     final int minLengthForEachSubList = size ~/ chunkSize;
 
@@ -231,5 +241,30 @@ extension HandyListExtensions<E> on List<E> {
       subLists.add(sublist(start, end));
     }
     return subLists;
+  }
+
+  /// **intersperse**
+  ///
+  /// Intersperse a list with a given separator
+  ///
+  /// Usage:
+  /// ```dart
+  /// List<String> words = ["Hello", "World", "Name", "Is", "World"]
+  /// words.intersperse(" ")
+  /// ```
+  ///
+  /// Result:
+  /// ```
+  /// ["Hello", " ", "World", " ", "Name", " ", "Is", " ", "World"]
+  /// ```
+  Iterable<E> intersperse(E separator) sync* {
+    final iterator = this.iterator;
+    if (iterator.moveNext()) {
+      yield iterator.current;
+      while (iterator.moveNext()) {
+        yield separator;
+        yield iterator.current;
+      }
+    }
   }
 }
