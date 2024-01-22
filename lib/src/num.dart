@@ -42,6 +42,16 @@ extension HandyNumExtension on num {
   /// Returns a [Duration] with the given number of weeks.
   Duration get weeks => Duration(days: toInt() * 7);
 
+  /// **months**
+  ///
+  /// Returns a [Duration] with the given number of months.
+  Duration get months => Duration(days: toInt() * 30);
+
+  /// **years**
+  ///
+  /// Returns a [Duration] with the given number of years.
+  Duration get years => Duration(days: toInt() * 365);
+
   bool isBetween(num lower, num upper) {
     return lower.compareTo(upper) == 1;
   }

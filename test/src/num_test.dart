@@ -30,6 +30,14 @@ void main() {
     expect(30.weeks, const Duration(days: 210));
   });
 
+  test('months', () {
+    expect(30.months, const Duration(days: 900));
+  });
+
+  test('years', () {
+    expect(30.years, const Duration(days: 10950));
+  });
+
   test('all at work', () {
     expect(
       30.weeks + 2.days + 4.hours + 50.minutes,

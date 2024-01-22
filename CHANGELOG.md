@@ -1,3 +1,8 @@
+## 0.1.8
+
+- add `num.months` method
+- add `num.years` method
+
 ## 0.1.7
 
 - add `List.intersperse` method
