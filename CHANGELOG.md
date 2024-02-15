@@ -1,3 +1,10 @@
+## 0.1.9
+
+- add `int?.isInt` method
+- add `String?.isString` method
+- add `String?.orEmpty` method
+- add `String?.isNotReallyEmpty` method
+
 ## 0.1.8
 
 - add `num.months` method

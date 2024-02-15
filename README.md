@@ -223,6 +223,63 @@ String? name = null;
 name.isNull; // => true (bool)
 ```
 
+### Nullable Int
+
+#### isInt
+
+```dart
+int? number = 1;
+number.isInt; // => true (bool)
+```
+
+```dart
+int? number = null;
+number.isInt; // => false (bool)
+```
+
+### Nullable String
+
+#### isString
+
+```dart
+String? name = 'Ngoni';
+name.isString; // => true (bool)
+```
+
+```dart
+String? name = null;
+name.isString; // => false (bool)
+```
+
+### orEmpty
+
+```dart
+String? name = null;
+name.orEmpty; // => '' (String)
+```
+
+```dart
+String? name = 'Ngoni';
+name.orEmpty; // => 'Ngoni' (String)
+```
+
+### isNotReallyEmpty
+
+```dart
+String? name = null;
+name.isNotReallyEmpty; // => false (bool)
+```
+
+```dart
+String? name = ' ';
+name.isNotReallyEmpty; // => false (bool)
+```
+
+```dart
+String? name = 'Ngoni';
+name.isNotReallyEmpty; // => true (bool)
+```
+
 ## Additional information
 
 You can add in more extensions of your own -> share with the rest of the world.

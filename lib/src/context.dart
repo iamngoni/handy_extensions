@@ -8,7 +8,7 @@
 
 import 'package:flutter/material.dart';
 
-extension HandyContextExtension<T> on BuildContext {
+extension HandyContextExtension on BuildContext {
   /// Height
   ///
   /// Returns height of device screen (y-axis)
