@@ -1,3 +1,6 @@
+## 0.2.1
+- add `Iterable?.withoutNullElements` method
+
 ## 0.2.0
 - export missing nullable extensions
 

@@ -242,29 +242,4 @@ extension HandyListExtensions<E> on List<E> {
     }
     return subLists;
   }
-
-  /// **intersperse**
-  ///
-  /// Intersperse a list with a given separator
-  ///
-  /// Usage:
-  /// ```dart
-  /// List<String> words = ["Hello", "World", "Name", "Is", "World"]
-  /// words.intersperse(" ")
-  /// ```
-  ///
-  /// Result:
-  /// ```
-  /// ["Hello", " ", "World", " ", "Name", " ", "Is", " ", "World"]
-  /// ```
-  Iterable<E> intersperse(E separator) sync* {
-    final iterator = this.iterator;
-    if (iterator.moveNext()) {
-      yield iterator.current;
-      while (iterator.moveNext()) {
-        yield separator;
-        yield iterator.current;
-      }
-    }
-  }
 }

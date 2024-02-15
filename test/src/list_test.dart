@@ -110,11 +110,4 @@ void main() {
     expect(chunks[1].length, 6);
     expect(chunks[2].length, 7);
   });
-
-  test('intersperse', () {
-    expect(
-      [1, 2, 3, 4, 5, 6].intersperse(0),
-      [1, 0, 2, 0, 3, 0, 4, 0, 5, 0, 6],
-    );
-  });
 }

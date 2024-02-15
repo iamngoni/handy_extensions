@@ -1,8 +1,10 @@
 export 'context.dart';
 export 'datetime.dart';
 export 'general.dart';
+export 'iterable.dart';
 export 'list.dart';
 export 'nullable/int.dart';
+export 'nullable/iterable.dart';
 export 'nullable/string.dart';
 export 'num.dart';
 export 'string.dart';
