@@ -1,3 +1,6 @@
+## 0.2.0
+- export missing nullable extensions
+
 ## 0.1.9
 
 - add `int?.isInt` method

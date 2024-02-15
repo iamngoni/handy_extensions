@@ -2,6 +2,8 @@ export 'context.dart';
 export 'datetime.dart';
 export 'general.dart';
 export 'list.dart';
+export 'nullable/int.dart';
+export 'nullable/string.dart';
 export 'num.dart';
 export 'string.dart';
 export 'utils/haptic_feedback_type.dart';
