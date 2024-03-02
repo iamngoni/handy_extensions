@@ -100,6 +100,50 @@ String heading = 'hello world';
 String headingCase = heading.headingCase; // => Hello World
 ```
 
+#### doubleOrNull
+
+```dart
+String? number = '1';
+double? doubleNumber = number.doubleOrNull; // => 1.0 (double) or null (null)
+```
+
+#### intOrNull
+
+```dart
+String? number = '1';
+int? intNumber = number.intOrNull; // => 1 (int) or null (null)
+```
+
+### Map
+
+#### swap
+    
+```dart
+Map<String, int> map = {'a': 1, 'b': 2};
+map.swap; // {1: 'a', 2: 'b'}
+```
+
+#### copy
+    
+```dart
+Map<String, int> map = {'a': 1, 'b': 2};
+map.copy; // {'a': 1, 'b': 2}
+```
+
+#### removeNulls
+    
+```dart
+Map<String, int?> map = {'a': 1, 'b': null};
+map.removeNulls; // {'a': 1}
+```
+
+#### adjustOrder
+    
+```dart
+Map<String, int> map = {'a': 1, 'b': 2};
+map.adjustOrder(1, 0); // {'b': 2, 'a': 1}
+```
+
 ### List
 
 #### Partition into chunks
