@@ -3,6 +3,7 @@ export 'datetime.dart';
 export 'general.dart';
 export 'iterable.dart';
 export 'list.dart';
+export 'map.dart';
 export 'nullable/int.dart';
 export 'nullable/iterable.dart';
 export 'nullable/string.dart';

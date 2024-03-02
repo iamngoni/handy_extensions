@@ -1,3 +1,11 @@
+## 0.2.2
+- add `String.doubleOrNull` method
+- add `String.intOrNull` method
+- add `Map.swap` method
+- add `Map.copy` method
+- add `Map.removeNulls` method
+- add `Map.adjustOrder(int from, int to)` method
+
 ## 0.2.1
 - add `Iterable?.withoutNullElements` method
 

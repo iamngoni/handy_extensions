@@ -36,4 +36,14 @@ extension HandyStringExtension on String {
   bool get isNumeric {
     return double.tryParse(this) != null;
   }
+
+  /// Returns double or null if string is not numeric
+  double? get toDoubleOrNull {
+    return double.tryParse(this);
+  }
+
+  /// Returns int or null if string is not numeric
+  int? get toIntOrNull {
+    return int.tryParse(this);
+  }
 }

@@ -31,4 +31,24 @@ void main() {
       expect('1'.isNumeric, true);
     });
   });
+
+  group('toDoubleOrNull', () {
+    test('fail', () {
+      expect('ZW'.toDoubleOrNull, null);
+    });
+
+    test('success', () {
+      expect('1'.toDoubleOrNull, 1);
+    });
+  });
+
+  group('toIntOrNull', () {
+    test('fail', () {
+      expect('ZW'.toIntOrNull, null);
+    });
+
+    test('success', () {
+      expect('1'.toIntOrNull, 1);
+    });
+  });
 }

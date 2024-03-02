@@ -1,0 +1,25 @@
+name: Handy Extensions Coverage
+on:
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - "**/coverage.svg"
+
+jobs:
+  coverage-badge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: GoogleCloudPlatform/github-badge-lcov@v1.0.0
+        file: coverage/lcov.info
+        style: flat
+        icon_name: googlecloud,
+        icon_color: 'ffffff',
+        label: 'Coverage'
+        label_color: 'ffffff'
+        critical: 60
+        criticalColor: '9c2c9c'
+        warning: 75
+        warningColor: 'd68f0c'
+        success_color: '43ad43'
+        message_color: 'ffffff'
