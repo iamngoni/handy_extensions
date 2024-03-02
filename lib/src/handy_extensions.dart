@@ -10,4 +10,3 @@ export 'nullable/string.dart';
 export 'num.dart';
 export 'string.dart';
 export 'utils/haptic_feedback_type.dart';
-export 'widget.dart';
