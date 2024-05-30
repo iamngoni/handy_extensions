@@ -1,3 +1,6 @@
+## 0.2.3
+- add `String?.matches` method
+
 ## 0.2.2
 - add `String.doubleOrNull` method
 - add `String.intOrNull` method

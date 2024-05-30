@@ -46,4 +46,9 @@ extension HandyStringExtension on String {
   int? get toIntOrNull {
     return int.tryParse(this);
   }
+
+  /// Return true if string matches the input string
+  bool matches(String input) {
+    return toLowerCase() == input.toLowerCase();
+  }
 }

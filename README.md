@@ -2,7 +2,6 @@
 
 Developed with 💙 by [Ngonidzashe Mangudya](https://twitter.com/iamngoni_)
 
-![coverage][coverage_badge]
 [![style: very good analysis][very_good_analysis_badge]][very_good_analysis_link]
 [![License: MIT][license_badge]][license_link]
 [![codecov](https://codecov.io/gh/iamngoni/handy_extensions/graph/badge.svg?token=8MVBOJFQC7)](https://codecov.io/gh/iamngoni/handy_extensions)
