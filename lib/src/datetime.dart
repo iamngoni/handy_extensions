@@ -232,4 +232,24 @@ extension HandyDateTimeExtension on DateTime {
       return '$getDate/$getMonth/$getYear';
     }
   }
+
+  /// Is Same Day
+  ///
+  /// Returns true if the given [DateTime] is the same day as the other [DateTime]
+  ///
+  /// Usage:
+  ///
+  /// ```dart
+  /// DateTime.now().isSameDay(DateTime(2021, 1, 1))
+  /// ```
+  ///
+  /// Result:
+  ///
+  /// ```dart
+  /// false
+  /// ```
+  ///
+  bool isSameDay(DateTime other) {
+    return year == other.year && month == other.month && day == other.day;
+  }
 }

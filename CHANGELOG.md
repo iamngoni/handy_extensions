@@ -1,3 +1,6 @@
+## 0.2.4
+- add `DateTime.isSameDay` method
+
 ## 0.2.3
 - add `String?.matches` method
 
