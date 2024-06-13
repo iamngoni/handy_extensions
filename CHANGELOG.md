@@ -1,3 +1,6 @@
+## 0.2.5
+- add `DateTime.isSameDayForYear` method
+
 ## 0.2.4
 - add `DateTime.isSameDay` method
 

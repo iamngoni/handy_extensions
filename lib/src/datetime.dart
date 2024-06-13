@@ -233,6 +233,26 @@ extension HandyDateTimeExtension on DateTime {
     }
   }
 
+  /// Is Same Day For Year
+  ///
+  /// Returns true if the given [DateTime] is the same day as the other [DateTime]
+  ///
+  /// Usage:
+  ///
+  /// ```dart
+  /// DateTime.now().isSameDay(DateTime(2021, 1, 1))
+  /// ```
+  ///
+  /// Result:
+  ///
+  /// ```dart
+  /// false
+  /// ```
+  ///
+  bool isSameDayForYear(DateTime other) {
+    return year == other.year && month == other.month && day == other.day;
+  }
+
   /// Is Same Day
   ///
   /// Returns true if the given [DateTime] is the same day as the other [DateTime]
@@ -250,6 +270,6 @@ extension HandyDateTimeExtension on DateTime {
   /// ```
   ///
   bool isSameDay(DateTime other) {
-    return year == other.year && month == other.month && day == other.day;
+    return month == other.month && day == other.day;
   }
 }
