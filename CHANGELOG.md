@@ -1,3 +1,6 @@
+## 0.2.7
+- fix missing `TimeOfDay` export
+
 ## 0.2.6
 - add `TimeOfDay.isBefore` method
 - add tests for `DateTime` extensions

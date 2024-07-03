@@ -8,7 +8,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:handy_extensions/src/time_of_day.dart';
+import 'package:handy_extensions/handy_extensions.dart';
 
 void main() {
   test('isBefore', () {
