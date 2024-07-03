@@ -88,14 +88,14 @@ extension HandyDateTimeExtension on DateTime {
     }
   }
 
-  /// Time Of Day
+  /// Time Of Day Str
   ///
   /// Returns time of day in the format Morning, Afternoon, Evening or Night
   ///
   /// Usage:
   ///
   /// ```dart
-  /// DateTime.now().timeOfDay
+  /// DateTime.now().timeOfDayStr
   /// ```
   ///
   /// Result:
@@ -104,7 +104,7 @@ extension HandyDateTimeExtension on DateTime {
   /// Morning
   /// ```
   ///
-  String get timeOfDay {
+  String get timeOfDayStr {
     if (hour >= 0 && hour < 12) {
       return 'Morning';
     } else if (hour >= 12 && hour < 16) {
