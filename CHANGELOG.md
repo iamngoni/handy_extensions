@@ -1,4 +1,4 @@
-## 0.2.5
+## 0.2.6
 - add `TimeOfDay.isBefore` method
 - add tests for `DateTime` extensions
 
