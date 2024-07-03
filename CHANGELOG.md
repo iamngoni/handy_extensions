@@ -1,4 +1,8 @@
 ## 0.2.5
+- add `TimeOfDay.isBefore` method
+- add tests for `DateTime` extensions
+
+## 0.2.5
 - add `DateTime.isSameDayForYear` method
 
 ## 0.2.4

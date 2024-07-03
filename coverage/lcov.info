@@ -20,6 +20,12 @@ DA:23,4
 LF:3
 LH:3
 end_of_record
+SF:lib/src/time_of_day.dart
+DA:23,1
+DA:24,3
+LF:2
+LH:2
+end_of_record
 SF:lib/src/utils/constants.dart
 DA:13,3
 DA:14,1
