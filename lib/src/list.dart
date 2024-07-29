@@ -242,4 +242,24 @@ extension HandyListExtensions<E> on List<E> {
     }
     return subLists;
   }
+
+  /// **containsSome**
+  ///
+  /// Checks if the list contains some of the items in the given list
+  ///
+  /// Usage:
+  ///
+  /// ```dart
+  /// List<String> words = ["Hello", "World", "Name", "Is", "World"]
+  /// words.containsSome(["Hello", "World", "Name"])
+  /// ```
+  ///
+  /// Result:
+  ///
+  /// ```
+  /// true
+  /// ```
+  bool containsSome(List<E> items) {
+    return items.any(contains);
+  }
 }

@@ -110,4 +110,30 @@ void main() {
     expect(chunks[1].length, 6);
     expect(chunks[2].length, 7);
   });
+
+  test('containsSome', () {
+    final List<String> interests = [
+      'Innovation',
+      'Lifestyle',
+      'Fashion',
+      'Business',
+      'Travel & Tourism',
+      'Sports',
+      'Entertainment',
+      'Research & Education',
+      'Agriculture',
+      'Health & Fitness',
+      'Politics',
+      'History & Culture',
+      'Technology',
+      'Science',
+      'Finance',
+      'Food & Drink',
+      'Music',
+      'Arts & Crafts',
+      'Gaming',
+    ];
+    final List<String> selectedInterests = ['Innovation', 'Fashion', 'Music'];
+    expect(interests.containsSome(selectedInterests), true);
+  });
 }

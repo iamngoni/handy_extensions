@@ -1,3 +1,6 @@
+## 0.2.8
+- add `List.containsSome` method
+
 ## 0.2.7
 - fix missing `TimeOfDay` export
 
