@@ -7,24 +7,80 @@
 //
 
 extension HandyMapExtension<K, V> on Map<K, V> {
-  /// Returns a new map with the keys and values swapped.
+  /// Creates a new map with the keys and values swapped.
+  ///
+  /// This getter returns a new map where each key becomes a value and each
+  /// value becomes a key. Note that if the original map has duplicate values,
+  /// some key-value pairs may be lost in the resulting map.
+  ///
+  /// Example:
+  /// ```dart
+  /// final original = {'a': 1, 'b': 2, 'c': 3};
+  /// final swapped = original.swap;
+  /// print(swapped); // Output: {1: 'a', 2: 'b', 3: 'c'}
+  /// ```
+  ///
+  /// Returns a [Map<V, K>] with swapped keys and values.
   Map<V, K> get swap {
     return map((key, value) => MapEntry(value, key));
   }
 
-  /// Returns a new map from the current map
+  /// Creates a shallow copy of the current map.
+  ///
+  /// This getter returns a new map with the same key-value pairs as the
+  /// original. Modifying the new map does not affect the original map.
+  ///
+  /// Example:
+  /// ```dart
+  /// final original = {'a': 1, 'b': 2};
+  /// final copied = original.copy;
+  /// copied['c'] = 3;
+  /// print(original); // Output: {'a': 1, 'b': 2}
+  /// print(copied);   // Output: {'a': 1, 'b': 2, 'c': 3}
+  /// ```
+  ///
+  /// Returns a new [Map<K, V>] with the same entries as the original map.
   Map<K, V> get copy {
     return Map<K, V>.from(this);
   }
 
-  /// Returns a new map with the null values removed.
+  /// Creates a new map with null values removed.
+  ///
+  /// This getter returns a new map containing all key-value pairs from the
+  /// original map except those where the value is null.
+  ///
+  /// Example:
+  /// ```dart
+  /// final original = {'a': 1, 'b': null, 'c': 3};
+  /// final nonNull = original.removeNulls;
+  /// print(nonNull); // Output: {'a': 1, 'c': 3}
+  /// ```
+  ///
+  /// Returns a new [Map<K, V>] with all non-null entries from the original map.
   Map<K, V> get removeNulls {
     return Map<K, V>.fromEntries(
       entries.where((entry) => entry.value != null),
     );
   }
 
-  /// Returns a new map with map order adjusted
+  /// Creates a new map with the order of entries adjusted.
+  ///
+  /// This method moves an entry from the [from] index to the [to] index.
+  /// If [to] is greater than [from], it's decremented by 1 to account for
+  /// the removal of the item at [from].
+  ///
+  /// Example:
+  /// ```dart
+  /// final original = {'a': 1, 'b': 2, 'c': 3, 'd': 4};
+  /// final adjusted = original.adjustOrder(1, 3);
+  /// print(adjusted); // Output: {'a': 1, 'c': 3, 'd': 4, 'b': 2}
+  /// ```
+  ///
+  /// Parameters:
+  ///   - [from]: The current index of the entry to move.
+  ///   - [to]: The desired new index for the entry.
+  ///
+  /// Returns a new [Map<K, V>] with the adjusted order of entries.
   Map<K, V> adjustOrder(int from, int to) {
     int to0 = to;
     if (to0 > from) {

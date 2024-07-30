@@ -10,63 +10,133 @@ import 'utils/constants.dart';
 import 'utils/format_time.dart';
 
 extension HandyDateTimeExtension on DateTime {
-  /// Readable Date
+  /// Returns a human-readable date string.
   ///
-  /// Returns date string in the format Tuesday 1 January 2022
+  /// The format is "Day Date Month Year" (e.g., "Tuesday 1 January 2022").
+  ///
+  /// Example:
+  /// ```dart
+  /// final date = DateTime(2022, 1, 1);
+  /// print(date.readableDate); // Output: Saturday 1 January 2022
+  /// ```
+  ///
+  /// Returns a [String] representing the date in a readable format.
   String get readableDate => '$getDay $getDate $getMonth $getYear';
 
-  /// Readable DateTime
+  /// Returns a human-readable date and time string.
   ///
-  /// Returns date and time string in the format January 12, 2022 08:00:15
+  /// The format is "Month Date, Year HH:MM:SS" (e.g., "January 12, 2022 08:00:15").
+  ///
+  /// Example:
+  /// ```dart
+  /// final dateTime = DateTime(2022, 1, 12, 8, 0, 15);
+  /// print(dateTime.readableDateTime); // Output: January 12, 2022 08:00:15
+  /// ```
+  ///
+  /// Returns a [String] representing the date and time in a readable format.
   String get readableDateTime =>
-      "$getMonth $getDate, $getYear ${hour >= 10 ? hour : "0$hour"}"
-      ":${minute >= 10 ? minute : "0$minute"}:${second >= 10 ? second : "0"
-          "$second"}";
+      "$getMonth $getDate, $getYear ${hour.toString().padLeft(2, '0')}:"
+      "${minute.toString().padLeft(2, '0')}:${second.toString().padLeft(2, '0')}";
 
-  /// Readable Time
+  /// Returns a readable time string.
   ///
-  /// Returns time string in the format 08:00:34
+  /// The format is "HH:MM:SS" (e.g., "08:00:34").
+  ///
+  /// Example:
+  /// ```dart
+  /// final time = DateTime(2022, 1, 1, 8, 0, 34);
+  /// print(time.readableTime); // Output: 08:00:34
+  /// ```
+  ///
+  /// Returns a [String] representing the time in a readable format.
   String get readableTime =>
-      "${hour >= 10 ? hour : "0$hour"}:${minute >= 10 ? minute : "0$minute"}"
-      ":${second >= 10 ? second : "0$second"}";
+      "${hour.toString().padLeft(2, '0')}:${minute.toString().padLeft(2, '0')}:"
+      "${second.toString().padLeft(2, '0')}";
 
-  /// Get Day
+  /// Returns the full name of the day of the week.
   ///
-  /// Returns day string in the format Monday, Tuesday etc
+  /// Example:
+  /// ```dart
+  /// final date = DateTime(2022, 1, 1);
+  /// print(date.getDay); // Output: Saturday
+  /// ```
+  ///
+  /// Returns a [String] representing the full name of the day.
   String get getDay => weekday == 7
       ? DateConstants.days[0].day
       : DateConstants.days[weekday].day;
 
-  /// Get Short Day
+  /// Returns the abbreviated name of the day of the week (first 3 letters).
   ///
-  /// Returns short day string in the format Mon, Tue, Wed etc
+  /// Example:
+  /// ```dart
+  /// final date = DateTime(2022, 1, 1);
+  /// print(date.getShortDay); // Output: Sat
+  /// ```
+  ///
+  /// Returns a [String] representing the abbreviated day name.
   String get getShortDay => getDay.substring(0, 3);
 
-  /// Get Date
+  /// Returns the day of the month.
   ///
-  /// Returns date integer i.e. simply returns .day value of the
-  /// given [DateTime]
+  /// Example:
+  /// ```dart
+  /// final date = DateTime(2022, 1, 15);
+  /// print(date.getDate); // Output: 15
+  /// ```
+  ///
+  /// Returns an [int] representing the day of the month.
   int get getDate => day;
 
-  /// Get Month
+  /// Returns the full name of the month.
   ///
-  /// Returns month string in the format January, February etc
+  /// Example:
+  /// ```dart
+  /// final date = DateTime(2022, 3, 1);
+  /// print(date.getMonth); // Output: March
+  /// ```
+  ///
+  /// Returns a [String] representing the full name of the month.
   String get getMonth => DateConstants.months[month - 1].month;
 
-  /// Get Short Month
+  /// Returns the abbreviated name of the month (first 3 letters).
   ///
-  /// Returns short month string in the format Jan, Feb etc
+  /// Example:
+  /// ```dart
+  /// final date = DateTime(2022, 3, 1);
+  /// print(date.getShortMonth); // Output: Mar
+  /// ```
+  ///
+  /// Returns a [String] representing the abbreviated month name.
   String get getShortMonth => getMonth.substring(0, 3);
 
-  /// Get Year
+  /// Returns the year as a string.
   ///
-  /// Returns year in the format 2020, 2021 etc
+  /// Example:
+  /// ```dart
+  /// final date = DateTime(2022, 1, 1);
+  /// print(date.getYear); // Output: 2022
+  /// ```
+  ///
+  /// Returns a [String] representing the year.
   String get getYear => '$year';
 
-  /// Time Ago
+  /// Returns a string representing the time difference from now.
   ///
-  /// Returns string of time difference between given DateTime and
-  /// [DateTime.now()] in the format 1d, 2h, 4s or Just now
+  /// The format can be "Xd" for days, "Xh" for hours, "Xm" for minutes,
+  /// "Xs" for seconds, or "Just now" for very recent times.
+  ///
+  /// Example:
+  /// ```dart
+  /// final now = DateTime.now();
+  /// final pastTime = now.subtract(Duration(hours: 3));
+  /// print(pastTime.timeAgo); // Output: 3h
+  ///
+  /// final futureTime = now.add(Duration(days: 2));
+  /// print(futureTime.timeAgo); // Output: 2d remaining
+  /// ```
+  ///
+  /// Returns a [String] representing the time difference.
   String get timeAgo {
     final currentTime = DateTime.now();
     final difference = currentTime.difference(this);
@@ -88,22 +158,20 @@ extension HandyDateTimeExtension on DateTime {
     }
   }
 
-  /// Time Of Day Str
+  /// Returns a string representing the time of day.
   ///
-  /// Returns time of day in the format Morning, Afternoon, Evening or Night
+  /// Possible values: "Morning", "Afternoon", "Evening", "Night"
   ///
-  /// Usage:
-  ///
+  /// Example:
   /// ```dart
-  /// DateTime.now().timeOfDayStr
+  /// final morning = DateTime(2022, 1, 1, 9, 0);
+  /// print(morning.timeOfDayStr); // Output: Morning
+  ///
+  /// final evening = DateTime(2022, 1, 1, 18, 0);
+  /// print(evening.timeOfDayStr); // Output: Evening
   /// ```
   ///
-  /// Result:
-  ///
-  /// ```dart
-  /// Morning
-  /// ```
-  ///
+  /// Returns a [String] representing the time of day.
   String get timeOfDayStr {
     if (hour >= 0 && hour < 12) {
       return 'Morning';
@@ -116,109 +184,106 @@ extension HandyDateTimeExtension on DateTime {
     }
   }
 
-  /// Time Of Day Emoji
+  /// Returns an emoji representing the time of day.
   ///
-  /// Returns emoji of time of day in the format 🌤️, 🌤️, 🌙 or 🌙
+  /// Possible values: "🌤️" (for morning and afternoon), "🌙" (for evening and night)
   ///
-  /// Usage:
-  ///
+  /// Example:
   /// ```dart
-  /// DateTime.now().timeOfDayEmoji
+  /// final morning = DateTime(2022, 1, 1, 9, 0);
+  /// print(morning.timeOfDayEmoji); // Output: 🌤️
+  ///
+  /// final night = DateTime(2022, 1, 1, 22, 0);
+  /// print(night.timeOfDayEmoji); // Output: 🌙
   /// ```
   ///
-  /// Result:
-  ///
-  /// ```dart
-  /// 🌤️
-  /// ```
-  ///
+  /// Returns a [String] containing an emoji representing the time of day.
   String get timeOfDayEmoji {
-    if (hour >= 0 && hour < 12) {
+    if (hour >= 0 && hour < 16) {
       return '🌤️';
-    } else if (hour >= 12 && hour < 16) {
-      return '🌤️';
-    } else if (hour >= 16 && hour < 20) {
-      return '🌙';
     } else {
       return '🌙';
     }
   }
 
-  /// Is Between
+  /// Checks if this date is between two other dates.
   ///
-  /// Returns true if the given [DateTime] is between the given start and end [DateTime]
+  /// This method returns true if this date is after [start] and before [end].
   ///
-  /// Usage:
-  ///
+  /// Example:
   /// ```dart
-  /// DateTime.now().isBetween(DateTime(2021, 1, 1), DateTime(2021, 12, 31))
+  /// final date = DateTime(2022, 6, 15);
+  /// final start = DateTime(2022, 1, 1);
+  /// final end = DateTime(2022, 12, 31);
+  /// print(date.isBetween(start, end)); // Output: true
+  ///
+  /// final outOfRange = DateTime(2023, 1, 1);
+  /// print(outOfRange.isBetween(start, end)); // Output: false
   /// ```
   ///
-  /// Result:
+  /// Parameters:
+  ///   - [start]: The start date of the range.
+  ///   - [end]: The end date of the range.
   ///
-  /// ```dart
-  /// true
-  /// ```
-  ///
+  /// Returns a [bool] indicating whether this date is within the given range.
   bool isBetween(DateTime start, DateTime end) {
     return isAfter(start) && isBefore(end);
   }
 
-  /// Time Format
+  /// Returns time string in the format HH:MMam/pm.
   ///
-  /// Returns time string in the format 08:00pm
-  ///
-  /// Usage:
-  ///
+  /// Example:
   /// ```dart
-  /// DateTime.now().timeFormat
+  /// final time = DateTime(2022, 1, 1, 14, 30);
+  /// print(time.timeFormat); // Output: 02:30pm
   /// ```
   ///
-  /// Result:
-  ///
-  /// ```dart
-  /// 08:00pm
-  /// ```
-  ///
+  /// Returns a [String] representing the time in HH:MMam/pm format.
   String get timeFormat {
     return formatTime(this);
   }
 
-  /// Readable Date Time Format
+  /// Returns a readable date and time string.
   ///
-  /// Returns date and time string in the format Tuesday 1 January 2022, 08:00pm
+  /// The format is "Day Date Month Year, HH:MMam/pm"
+  /// (e.g., "Tuesday 1 January 2022, 08:00pm").
   ///
-  /// Usage:
-  ///
+  /// Example:
   /// ```dart
-  /// DateTime.now().readableDateTimeFormat
+  /// final dateTime = DateTime(2022, 1, 1, 20, 0);
+  /// print(dateTime.readableDateTimeFormat);
+  /// // Output: Saturday 1 January 2022, 08:00pm
   /// ```
   ///
-  /// Result:
-  ///
-  /// ```dart
-  /// Tuesday 1 January 2022, 08:00pm
-  /// ```
+  /// Returns a [String] representing the date and time in a readable format.
   String get readableDateTimeFormat {
     return '$readableDate, $timeFormat';
   }
 
-  /// Describe
+  /// Returns a concise description of the date relative to now.
   ///
-  /// Returns date string in the format 08:00pm, Yesterday, Monday, 1/1/2022
+  /// The format can be:
+  /// - Time (HH:MMam/pm) for today
+  /// - "Yesterday" for yesterday
+  /// - Day name for dates within the last week
+  /// - "Date/Month/Year" for older dates
   ///
-  /// Usage:
-  ///
+  /// Example:
   /// ```dart
-  /// DateTime.now().describe
+  /// final now = DateTime.now();
+  /// print(now.describe); // Output: current time (e.g., 03:30pm)
+  ///
+  /// final yesterday = now.subtract(Duration(days: 1));
+  /// print(yesterday.describe); // Output: Yesterday
+  ///
+  /// final lastWeek = now.subtract(Duration(days: 6));
+  /// print(lastWeek.describe); // Output: day name (e.g., Monday)
+  ///
+  /// final oldDate = DateTime(2021, 12, 1);
+  /// print(oldDate.describe); // Output: 1/12/2021
   /// ```
   ///
-  /// Result:
-  ///
-  /// ```dart
-  /// 08:00pm
-  /// ```
-  ///
+  /// Returns a [String] describing the date relative to now.
   String get describe {
     final DateTime now = DateTime.now();
     final difference = now.difference(this).inDays;
@@ -229,46 +294,46 @@ extension HandyDateTimeExtension on DateTime {
     } else if (difference <= 7) {
       return getDay;
     } else {
-      return '$getDate/$getMonth/$getYear';
+      return '$getDate/$getShortMonth/$getYear';
     }
   }
 
-  /// Is Same Day For Year
+  /// Checks if this date is the same day as [other], ignoring time.
   ///
-  /// Returns true if the given [DateTime] is the same day as the other [DateTime]
-  ///
-  /// Usage:
-  ///
+  /// Example:
   /// ```dart
-  /// DateTime.now().isSameDay(DateTime(2021, 1, 1))
+  /// final date1 = DateTime(2022, 1, 1, 9, 0);
+  /// final date2 = DateTime(2022, 1, 1, 18, 0);
+  /// print(date1.isSameDayForYear(date2)); // Output: true
+  ///
+  /// final date3 = DateTime(2023, 1, 1);
+  /// print(date1.isSameDayForYear(date3)); // Output: false
   /// ```
   ///
-  /// Result:
+  /// Parameters:
+  ///   - [other]: The date to compare with.
   ///
-  /// ```dart
-  /// false
-  /// ```
-  ///
+  /// Returns a [bool] indicating whether the dates are on the same day of the same year.
   bool isSameDayForYear(DateTime other) {
     return year == other.year && month == other.month && day == other.day;
   }
 
-  /// Is Same Day
+  /// Checks if this date is the same day and month as [other], ignoring year and time.
   ///
-  /// Returns true if the given [DateTime] is the same day as the other [DateTime]
-  ///
-  /// Usage:
-  ///
+  /// Example:
   /// ```dart
-  /// DateTime.now().isSameDay(DateTime(2021, 1, 1))
+  /// final date1 = DateTime(2022, 1, 1);
+  /// final date2 = DateTime(2023, 1, 1);
+  /// print(date1.isSameDay(date2)); // Output: true
+  ///
+  /// final date3 = DateTime(2022, 2, 1);
+  /// print(date1.isSameDay(date3)); // Output: false
   /// ```
   ///
-  /// Result:
+  /// Parameters:
+  ///   - [other]: The date to compare with.
   ///
-  /// ```dart
-  /// false
-  /// ```
-  ///
+  /// Returns a [bool] indicating whether the dates are on the same day and month.
   bool isSameDay(DateTime other) {
     return month == other.month && day == other.day;
   }

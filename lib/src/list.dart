@@ -9,20 +9,23 @@
 import 'dart:math';
 
 extension HandyListExtensions<E> on List<E> {
-  /// **partition**
+  /// Splits a [List] into separate list chunks of the specified [chunkSize].
   ///
-  /// Splits a [List] into the separate list chunks depending on the
-  /// specified [chunkSize]. Chunk size will default to 2
+  /// If the list length is not evenly divisible by [chunkSize], the last chunk
+  /// will contain the remaining elements.
   ///
-  /// Usage:
+  /// Example:
   /// ```dart
-  /// List<String> words = ["Hello", "World", "Name", "Is", "Ngoni"]
-  /// List<List<String>> partitionedWords = words.partition(chunkSize: 2)
+  /// final words = ["Hello", "World", "Name", "Is", "Ngoni"];
+  /// final partitionedWords = words.partition(chunkSize: 2);
+  /// print(partitionedWords);
+  /// // Output: [["Hello", "World"], ["Name", "Is"], ["Ngoni"]]
   /// ```
-  /// Result:
-  /// ```
-  /// [["Hello", "World"], ["Name", "Is"], ["Ngoni"]]
-  /// ```
+  ///
+  /// Parameters:
+  ///   - [chunkSize]: The size of each chunk. Defaults to 2.
+  ///
+  /// Returns a [List<List<E>>] containing the partitioned chunks.
   List<List<E>> partition({int chunkSize = 2}) {
     final List<List<E>> chunks = [];
 
@@ -36,24 +39,19 @@ extension HandyListExtensions<E> on List<E> {
     return chunks;
   }
 
-  // TODO: partitionWhen
-  // TODO: multiSortMethods
-
-  /// **same**
+  /// Checks if two lists contain the same elements, regardless of order.
   ///
-  /// Basically checks if two lists / arrays are the same
-  /// despite being ordered differently i.e. if they have the same equal elements
-  ///
-  /// Usage:
+  /// Example:
   /// ```dart
-  /// List<String> words = ["Hello", "World"]
-  /// List<String> otherWords = ["World", "Hello"]
-  /// print(words.same(otherWords))
+  /// final words = ["Hello", "World"];
+  /// final otherWords = ["World", "Hello"];
+  /// print(words.same(otherWords)); // Output: true
   /// ```
-  /// Result:
-  /// ```
-  /// true
-  /// ```
+  ///
+  /// Parameters:
+  ///   - [items]: The list to compare with.
+  ///
+  /// Returns a [bool] indicating whether the lists contain the same elements.
   bool same(List<E> items) {
     if (length != items.length) return false;
     bool isTheSame = true;
@@ -67,28 +65,35 @@ extension HandyListExtensions<E> on List<E> {
     return isTheSame;
   }
 
-  /// **randomItem**
+  /// Returns a random item from the list.
   ///
-  /// Return random item from the list.
-  ///
-  /// Usage:
+  /// Example:
   /// ```dart
-  /// List<String> words = ["Hello", "World", "Name", "Is", "Ngoni"]
-  /// String randomWord = words.randomItem()
+  /// final words = ["Hello", "World", "Name", "Is", "Ngoni"];
+  /// final randomWord = words.randomItem();
+  /// print(randomWord); // Output: A random word from the list
   /// ```
+  ///
+  /// Returns a random element [E] from the list.
   E randomItem() {
     return this[Random().nextInt(length)];
   }
 
-  /// **randomItems**
+  /// Returns a list of random items from the list.
   ///
-  /// Return random items from the list.
+  /// The returned list will not contain duplicate items.
   ///
-  /// Usage:
+  /// Example:
   /// ```dart
-  /// List<String> words = ["Hello", "World", "Name", "Is", "Ngoni"]
-  /// List<String> randomWords = words.randomItems(count: 2)
+  /// final words = ["Hello", "World", "Name", "Is", "Ngoni"];
+  /// final randomWords = words.randomItems(count: 2);
+  /// print(randomWords); // Output: Two random words from the list
   /// ```
+  ///
+  /// Parameters:
+  ///   - [count]: The number of random items to return. Defaults to 1.
+  ///
+  /// Returns a [List<E>] containing [count] random elements from the list.
   List<E> randomItems({int count = 1}) {
     final List<E> items = [];
 
@@ -105,16 +110,20 @@ extension HandyListExtensions<E> on List<E> {
     return items;
   }
 
-  ///  **firstWhereOrNull**
+  /// Returns the first element that satisfies the given predicate,
+  /// or null if no element satisfies the predicate.
   ///
-  /// Tries to find an element [E] using the given condition
-  /// else it will return null.
-  ///
-  /// Usage:
+  /// Example:
   /// ```dart
-  /// List<String> items = ["Hello", "World"];
-  /// String? word = items.firstWhereOrNull((String element) => element == "Hello")
+  /// final items = ["Hello", "World"];
+  /// final word = items.firstWhereOrNull((element) => element == "Hello");
+  /// print(word); // Output: Hello
   /// ```
+  ///
+  /// Parameters:
+  ///   - [test]: A function that returns true for the desired element.
+  ///
+  /// Returns the first matching element, or null if no match is found.
   E? firstWhereOrNull(bool Function(E) test) {
     for (final E element in this) {
       if (test(element)) return element;
@@ -122,31 +131,33 @@ extension HandyListExtensions<E> on List<E> {
     return null;
   }
 
-  /// **groupBy**
+  /// Groups list elements into a map using the given key function.
   ///
-  /// Group list elements into a map  using the given
-  /// condition.
-  ///
-  /// Usage:
+  /// Example:
   /// ```dart
-  ///   [
-  ///      {"title";: "Avengers", "release_date": "10/01/2019"},
-  ///      {"title": "Creed", "release_date": "10/01/2019"},
-  ///      {"title": "Jumanji", "release_date": "30/10/2019"},
-  ///   ].groupBy((m) => m["release_date"])
+  /// final movies = [
+  ///   {"title": "Avengers", "release_date": "10/01/2019"},
+  ///   {"title": "Creed", "release_date": "10/01/2019"},
+  ///   {"title": "Jumanji", "release_date": "30/10/2019"},
+  /// ];
+  /// final grouped = movies.groupBy((m) => m["release_date"]);
+  /// print(grouped);
+  /// // Output: {
+  /// //   "10/01/2019": [
+  /// //     {"title": "Avengers", "release_date": "10/01/2019"},
+  /// //     {"title": "Creed", "release_date": "10/01/2019"}
+  /// //   ],
+  /// //   "30/10/2019": [
+  /// //     {"title": "Jumanji", "release_date": "30/10/2019"},
+  /// //   ]
+  /// // }
   /// ```
-  /// Result:
-  /// ```json
-  ///   {
-  ///      "10/01/2019": [
-  ///        {"title": "Avengers", "release_date": "10/01/2019"},
-  ///        {"title": "Creed", "release_date": "10/01/2019"}
-  ///      ],
-  ///      "30/10/2019": [
-  ///        {"title": "Jumanji", "release_date": "30/10/2019"},
-  ///      ]
-  ///   }
-  /// ```
+  ///
+  /// Parameters:
+  ///   - [keyFunction]: A function that returns the key for each element.
+  ///
+  /// Returns a [Map<T, List<E>>] where each key is the result of [keyFunction]
+  /// and each value is a list of elements that produced that key.
   Map<T, List<E>> groupBy<T>(T Function(E) keyFunction) {
     return fold(
       <T, List<E>>{},
@@ -155,78 +166,72 @@ extension HandyListExtensions<E> on List<E> {
     );
   }
 
-  /// **swap**
+  /// Swaps two items in the list.
   ///
-  /// Swap items in list
-  ///
-  /// Usage:
+  /// Example:
   /// ```dart
-  /// List<String> words = ["Hello", "World", "Name", "Is", "Ngoni"]
-  /// words.swap(0, 3)
+  /// final words = ["Hello", "World", "Name", "Is", "Ngoni"];
+  /// words.swap(0, 3);
+  /// print(words); // Output: ["Is", "World", "Name", "Hello", "Ngoni"]
   /// ```
   ///
-  /// Result:
-  /// ```
-  /// ["Name", "World", "Hello", "Is", "Ngoni"]
-  /// ```
+  /// Parameters:
+  ///   - [index1]: The index of the first item to swap.
+  ///   - [index2]: The index of the second item to swap.
   void swap(int index1, int index2) {
     final E tmp = this[index1];
     this[index1] = this[index2];
     this[index2] = tmp;
   }
 
-  /// **swapRange**
+  /// Swaps a range of items in the list with another range.
   ///
-  /// Swap items in list using the given range
-  ///
-  /// Usage:
+  /// Example:
   /// ```dart
-  /// List<String> words = ["Hello", "World", "Name", "Is", "Ngoni"]
-  /// words.swapRange(0, 3, 2)
+  /// final words = ["Hello", "World", "Name", "Is", "Ngoni"];
+  /// words.swapRange(0, 2, 3);
+  /// print(words); // Output: ["Is", "Ngoni", "Name", "Hello", "World"]
   /// ```
   ///
-  /// Result:
-  /// ```
-  /// ["Name", "World", "Hello", "Is", "Ngoni"]
-  /// ```
+  /// Parameters:
+  ///   - [start]: The start index of the first range.
+  ///   - [end]: The end index (exclusive) of the first range.
+  ///   - [newStart]: The start index of the second range.
   void swapRange(int start, int end, int newStart) {
     final List<E> tmp = sublist(start, end);
     replaceRange(start, end, sublist(newStart, newStart + (end - start)));
     replaceRange(newStart, newStart + (end - start), tmp);
   }
 
-  /// **hasDuplicates**
+  /// Checks if there are any duplicates in the list.
   ///
-  /// Checks if there are any duplicates in the list
-  ///
-  /// Usage:
+  /// Example:
   /// ```dart
-  /// List<String> words = ["Hello", "World", "Name", "Is", "World"]
-  /// words.hasDuplicates()
+  /// final words = ["Hello", "World", "Name", "Is", "World"];
+  /// print(words.hasDuplicates()); // Output: true
   /// ```
   ///
-  /// Result:
-  /// ```
-  /// true
-  /// ```
+  /// Returns a [bool] indicating whether the list contains duplicates.
   bool hasDuplicates() {
     return length != toSet().length;
   }
 
-  /// **splitInto**
+  /// Splits a list into a list of lists of the specified size.
   ///
-  /// Splits a list into a list of lists
+  /// If the list length is not evenly divisible by [chunkSize], the last chunk
+  /// will contain the remaining elements.
   ///
-  /// Usage:
+  /// Example:
   /// ```dart
-  /// List<String> words = ["Hello", "World", "Name", "Is", "World"]
-  /// words.splitInto(chunkSize: 2)
+  /// final words = ["Hello", "World", "Name", "Is", "Ngoni"];
+  /// final split = words.splitInto(chunkSize: 2);
+  /// print(split); // Output: [["Hello", "World"], ["Name", "Is"], ["Ngoni"]]
   /// ```
   ///
-  /// Result:
-  /// ```
-  /// [["Hello", "World"], ["Name", "Is", "World"]]
-  /// ```
+  /// Parameters:
+  ///   - [chunkSize]: The size of each chunk. Defaults to 2.
+  ///
+  /// Returns a [List<List<E>>] containing the split chunks.
   List<List<E>> splitInto({int chunkSize = 2}) {
     final List<List<E>> subLists = [];
     final int size = length;
@@ -243,22 +248,19 @@ extension HandyListExtensions<E> on List<E> {
     return subLists;
   }
 
-  /// **containsSome**
+  /// Checks if the list contains any of the items in the given list.
   ///
-  /// Checks if the list contains some of the items in the given list
-  ///
-  /// Usage:
-  ///
+  /// Example:
   /// ```dart
-  /// List<String> words = ["Hello", "World", "Name", "Is", "World"]
-  /// words.containsSome(["Hello", "World", "Name"])
+  /// final words = ["Hello", "World", "Name", "Is", "Ngoni"];
+  /// print(words.containsSome(["Hello", "Goodbye"])); // Output: true
   /// ```
   ///
-  /// Result:
+  /// Parameters:
+  ///   - [items]: The list of items to check for.
   ///
-  /// ```
-  /// true
-  /// ```
+  /// Returns a [bool] indicating whether any of the items are present in the
+  /// list.
   bool containsSome(List<E> items) {
     return items.any(contains);
   }
