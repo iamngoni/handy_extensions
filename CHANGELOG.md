@@ -1,3 +1,7 @@
+## 0.2.9
+- add `Iterable.intersperseWith` method
+- add `Iterable.intersperseAt` method
+
 ## 0.2.8
 - add `List.containsSome` method
 
