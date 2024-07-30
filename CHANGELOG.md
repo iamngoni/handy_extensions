@@ -2,6 +2,7 @@
 - add `Iterable.intersperseWith` method
 - add `Iterable.intersperseAt` method
 - update documentation for all extensions
+- remove `TimeOfDay` extensions
 
 ## 0.2.8
 - add `List.containsSome` method
