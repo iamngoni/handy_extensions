@@ -79,10 +79,10 @@ extension HandyIterableExtension<T> on Iterable<T> {
     final iterator = this.iterator;
     var i = 0;
     while (iterator.moveNext()) {
-      yield iterator.current;
       if (i == index) {
         yield separator;
       }
+      yield iterator.current;
       i++;
     }
   }
