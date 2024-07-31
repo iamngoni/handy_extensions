@@ -86,4 +86,26 @@ extension HandyIterableExtension<T> on Iterable<T> {
       i++;
     }
   }
+
+  /// Inserts a separator at the last index in the iterable.
+  ///
+  /// This method inserts the [separator] after the last element in the iterable.
+  ///
+  /// Example:
+  /// ```dart
+  /// final letters = ['A', 'B', 'C', 'D'];
+  /// final result = letters.intersperseAtLast('-');
+  /// print(result.toList()); // Output: [A, B, C, D, -]
+  /// ```
+  ///
+  /// Returns an [Iterable] containing the original elements with the separator
+  Iterable<T> intersperseAtLast(T separator) sync* {
+    final iterator = this.iterator;
+    while (iterator.moveNext()) {
+      yield iterator.current;
+    }
+    if (!iterator.moveNext()) {
+      yield separator;
+    }
+  }
 }

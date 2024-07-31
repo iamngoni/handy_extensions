@@ -294,7 +294,7 @@ extension HandyDateTimeExtension on DateTime {
     } else if (difference <= 7) {
       return getDay;
     } else {
-      return '$getDate/$getShortMonth/$getYear';
+      return '$getDate/$getMonth/$getYear';
     }
   }
 

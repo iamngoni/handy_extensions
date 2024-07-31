@@ -1,3 +1,6 @@
+## 0.2.10
+- add `Iterable.intersperseAtLast` method
+
 ## 0.2.9
 - add `Iterable.intersperseWith` method
 - add `Iterable.intersperseAt` method
