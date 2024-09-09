@@ -16,7 +16,18 @@ extension HandyNumExtension on num {
   /// ```
   ///
   /// Returns a [Duration] with this number of microseconds.
-  Duration get microseconds => Duration(microseconds: toInt());
+  Duration get microseconds => Duration(microseconds: round());
+
+  /// Converts this number to a [Duration] representing milliseconds.
+  ///
+  /// Example:
+  /// ```dart
+  /// final duration = 1500.ms;
+  /// print(duration); // Output: 0:00:01.500000
+  /// ```
+  ///
+  /// Returns a [Duration] with this number of milliseconds.
+  Duration get ms => Duration(milliseconds: round());
 
   /// Converts this number to a [Duration] representing milliseconds.
   ///
@@ -27,7 +38,7 @@ extension HandyNumExtension on num {
   /// ```
   ///
   /// Returns a [Duration] with this number of milliseconds.
-  Duration get milliseconds => Duration(milliseconds: toInt());
+  Duration get milliseconds => Duration(milliseconds: round());
 
   /// Converts this number to a [Duration] representing seconds.
   ///
@@ -38,7 +49,7 @@ extension HandyNumExtension on num {
   /// ```
   ///
   /// Returns a [Duration] with this number of seconds.
-  Duration get seconds => Duration(seconds: toInt());
+  Duration get seconds => Duration(seconds: round());
 
   /// Converts this number to a [Duration] representing minutes.
   ///
@@ -49,7 +60,7 @@ extension HandyNumExtension on num {
   /// ```
   ///
   /// Returns a [Duration] with this number of minutes.
-  Duration get minutes => Duration(minutes: toInt());
+  Duration get minutes => Duration(minutes: round());
 
   /// Converts this number to a [Duration] representing hours.
   ///
@@ -60,7 +71,7 @@ extension HandyNumExtension on num {
   /// ```
   ///
   /// Returns a [Duration] with this number of hours.
-  Duration get hours => Duration(hours: toInt());
+  Duration get hours => Duration(hours: round());
 
   /// Converts this number to a [Duration] representing days.
   ///
@@ -71,7 +82,7 @@ extension HandyNumExtension on num {
   /// ```
   ///
   /// Returns a [Duration] with this number of days.
-  Duration get days => Duration(days: toInt());
+  Duration get days => Duration(days: round());
 
   /// Converts this number to a [Duration] representing weeks.
   ///
@@ -84,7 +95,7 @@ extension HandyNumExtension on num {
   /// ```
   ///
   /// Returns a [Duration] with this number of weeks.
-  Duration get weeks => Duration(days: toInt() * 7);
+  Duration get weeks => Duration(days: 7 * round());
 
   /// Converts this number to a [Duration] representing months.
   ///
@@ -97,7 +108,7 @@ extension HandyNumExtension on num {
   /// ```
   ///
   /// Returns a [Duration] with this number of months (approximated).
-  Duration get months => Duration(days: toInt() * 30);
+  Duration get months => Duration(days: (30.44 * this).round());
 
   /// Converts this number to a [Duration] representing years.
   ///
@@ -110,7 +121,12 @@ extension HandyNumExtension on num {
   /// ```
   ///
   /// Returns a [Duration] with this number of years (approximated).
-  Duration get years => Duration(days: toInt() * 365);
+  Duration get years {
+    final DateTime now = DateTime.now();
+    final DateTime today = DateTime(now.year, now.month, now.day);
+    final targetDate = DateTime(today.year - round(), today.month, today.day);
+    return today.difference(targetDate);
+  }
 
   /// Checks if this number is between two other numbers.
   ///

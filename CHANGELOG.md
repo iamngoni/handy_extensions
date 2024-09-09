@@ -1,3 +1,6 @@
+## 0.2.11
+- Bug fix: Consider leap years in `Num.years` to avoid losing a day every 4 years
+
 ## 0.2.10
 - add `Iterable.intersperseAtLast` method
 

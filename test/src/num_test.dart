@@ -39,11 +39,14 @@ void main() {
   });
 
   test('months', () {
-    expect(30.months, const Duration(days: 900));
+    expect(30.months, const Duration(days: 913));
   });
 
   test('years', () {
-    expect(30.years, const Duration(days: 10950));
+    expect(
+      DateTime(2024, 9, 9).subtract(18.years),
+      DateTime(2006, 9, 9),
+    );
   });
 
   test('all at work', () {
