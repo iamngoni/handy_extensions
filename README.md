@@ -23,6 +23,10 @@ Handy Extension is just a simple library with extensions to the core libraries t
 - [int](https://api.flutter.dev/flutter/dart-core/int-class.html)
 - [List](https://api.flutter.dev/flutter/dart-core/List-class.html)
 - [DateTime](https://api.flutter.dev/flutter/dart-core/DateTime-class.html)
+- [Num](https://api.flutter.dev/flutter/dart-core/num-class.html)
+- [Map](https://api.flutter.dev/flutter/dart-core/Map-class.html)
+- [Iterable](https://api.flutter.dev/flutter/dart-core/Iterable-class.html)
+- Nullable String (probably useless 😂 but it's there)
 
 ## Getting started
 
@@ -76,7 +80,7 @@ context.height;
 context.width;
 ```
 
-### String
+###  String
 
 #### Country Emoji
 

@@ -93,4 +93,25 @@ extension HandyMapExtension<K, V> on Map<K, V> {
     final Map<K, V> updated = Map.fromEntries(entries);
     return updated;
   }
+
+  /// Get a value from the map or return a default value if the key is not found.
+  ///
+  /// This method returns the value associated with the given key if it exists
+  /// in the map. If the key is not found, it returns the [defaultValue] instead.
+  ///
+  /// Example:
+  /// ```dart
+  /// final map = {'a': 1, 'b': 2};
+  /// final value = map.getOrDefault('a', 0);
+  /// print(value); // Output: 1
+  /// ```
+  ///
+  /// Parameters:
+  ///  - [key]: The key to look up in the map.
+  ///  - [defaultValue]: The value to return if the key is not found.
+  ///
+  /// Returns the value associated with the key, or the [defaultValue] if the key is not found.
+  V? getOrDefault(K key, [V? defaultValue]) {
+    return containsKey(key) ? this[key] : defaultValue;
+  }
 }
