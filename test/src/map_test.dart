@@ -32,4 +32,10 @@ void main() {
     final result = map.adjustOrder(0, 2);
     expect(result, {2: 'two', 3: 'three', 1: 'one'});
   });
+
+  test('getOrDefault', () {
+    final map = {1: 'one', 2: 'two'};
+    expect(map.getOrDefault(1, 'default'), 'one');
+    expect(map.getOrDefault(3, 'default'), 'default');
+  });
 }
