@@ -1,3 +1,6 @@
+## 0.2.13
+- add `String.isAllCaps` method
+
 ## 0.2.12
 - add `Map.getOrDefault` method
 

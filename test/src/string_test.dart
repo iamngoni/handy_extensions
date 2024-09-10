@@ -51,4 +51,14 @@ void main() {
       expect('1'.toIntOrNull, 1);
     });
   });
+
+  group('isAllCaps', () {
+    test('fail', () {
+      expect('handy extensions'.isAllCaps, false);
+    });
+
+    test('success', () {
+      expect('HANDY EXTENSIONS'.isAllCaps, true);
+    });
+  });
 }

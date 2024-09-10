@@ -130,4 +130,19 @@ extension HandyStringExtension on String {
   bool matches(String input) {
     return toLowerCase() == input.toLowerCase();
   }
+
+  /// Checks if this string is in all uppercase.
+  ///
+  /// This method compares the string with its uppercase version.
+  ///
+  /// Example:
+  /// ```dart
+  /// print('HELLO'.isAllCaps); // Output: true
+  /// print('Hello'.isAllCaps); // Output: false
+  /// ```
+  ///
+  /// Returns a [bool] indicating whether the string is in all uppercase.
+  bool get isAllCaps {
+    return this == toUpperCase();
+  }
 }
