@@ -34,8 +34,9 @@ void main() {
   });
 
   test('getOrDefault', () {
-    final map = {1: 'one', 2: 'two'};
+    final map = {1: 'one', 2: 'two', 4: null};
     expect(map.getOrDefault(1, 'default'), 'one');
     expect(map.getOrDefault(3, 'default'), 'default');
+    expect(map.getOrDefault(4, 'default'), 'default');
   });
 }

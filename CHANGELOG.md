@@ -1,3 +1,6 @@
+## 0.2.14
+- fix `Map.getOrDefault` method to return default value if value for key is `null`
+
 ## 0.2.13
 - add `String.isAllCaps` method
 
