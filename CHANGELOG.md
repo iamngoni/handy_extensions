@@ -1,3 +1,6 @@
+## 0.2.15
+- add `List.partitionWhere` method to partition a list into two lists based on a predicate
+
 ## 0.2.14
 - fix `Map.getOrDefault` method to return default value if value for key is `null`
 

@@ -136,4 +136,11 @@ void main() {
     final List<String> selectedInterests = ['Innovation', 'Fashion', 'Music'];
     expect(interests.containsSome(selectedInterests), true);
   });
+
+  test('partitionWhere', () {
+    final List<int> numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    final List<List<int>> partitioned = numbers.partitionWhere((e) => e.isEven);
+    expect(partitioned[0], [2, 4, 6, 8, 10]);
+    expect(partitioned[1], [1, 3, 5, 7, 9]);
+  });
 }

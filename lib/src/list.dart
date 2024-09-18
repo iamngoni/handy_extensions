@@ -39,6 +39,38 @@ extension HandyListExtensions<E> on List<E> {
     return chunks;
   }
 
+  /// Partitions a list into two lists based on a predicate.
+  ///
+  /// Example:
+  /// ```dart
+  /// final words = ["Hello", "World", "Name", "Is", "Ngoni"];
+  /// final partitionedWords = words.partitionWhere((word) => word.length > 3);
+  /// print(partitionedWords);
+  /// // Output: [["Hello", "World", "Ngoni"], ["Name", "Is"]]
+  /// ```
+  ///
+  /// Parameters:
+  ///  - [fn]: The predicate used to partition the list.
+  ///
+  /// Returns a [List<List<E>>] containing two lists: one with elements that
+  /// satisfy the predicate and one with elements that do not. The first list
+  /// contains elements that satisfy the predicate, while the second list
+  /// contains elements that do not.
+  List<List<E>> partitionWhere(bool Function(E) fn) {
+    final List<E> meetsRequirements = [];
+    final List<E> doesNotMeetRequirements = [];
+
+    for (final E element in this) {
+      if (fn(element)) {
+        meetsRequirements.add(element);
+      } else {
+        doesNotMeetRequirements.add(element);
+      }
+    }
+
+    return [meetsRequirements, doesNotMeetRequirements];
+  }
+
   /// Checks if two lists contain the same elements, regardless of order.
   ///
   /// Example:
