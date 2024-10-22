@@ -1,3 +1,6 @@
+## 0.2.16
+- fix: trim strings on `String.matches`
+
 ## 0.2.15
 - add `List.partitionWhere` method to partition a list into two lists based on a predicate
 

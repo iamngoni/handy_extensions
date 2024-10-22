@@ -128,7 +128,7 @@ extension HandyStringExtension on String {
   ///
   /// Returns a [bool] indicating whether the strings match (ignoring case).
   bool matches(String input) {
-    return toLowerCase() == input.toLowerCase();
+    return toLowerCase().trim() == input.toLowerCase().trim();
   }
 
   /// Checks if this string is in all uppercase.
