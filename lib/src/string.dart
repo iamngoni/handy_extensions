@@ -145,4 +145,25 @@ extension HandyStringExtension on String {
   bool get isAllCaps {
     return this == toUpperCase();
   }
+
+  /// Returns whether this string contains exactly the same characters as
+  /// [input], regardless of their order.
+  ///
+  /// The comparison is case sensitive and ignores whitespace. For example:
+  /// ```dart
+  /// 'hello'.hasSameCharacters('olleh');    // true
+  /// 'hello'.hasSameCharacters('HELLO');    // false
+  /// 'hello'.hasSameCharacters('world');    // false
+  /// ```
+  ///
+  /// This method uses [matches] internally after sorting the characters,
+  /// so the strings are compared in a case-sensitive manner without leading
+  /// or trailing whitespace.
+  bool hasSameCharacters(String input) {
+    final List<String> characters = split('');
+    final List<String> inputCharacters = input.split('');
+    characters.sort();
+    inputCharacters.sort();
+    return characters.join().matches(inputCharacters.join());
+  }
 }

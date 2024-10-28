@@ -1,3 +1,6 @@
+## 0.2.17
+- add `String.hasSameCharacters` method
+
 ## 0.2.16
 - fix: trim strings on `String.matches`
 
