@@ -110,11 +110,12 @@ extension HandyMapExtension<K, V> on Map<K, V> {
   ///  - [key]: The key to look up in the map.
   ///  - [defaultValue]: The value to return if the key is not found.
   ///
-  /// Returns the value associated with the key, or the [defaultValue] if the key is not found.
-  V? getOrDefault(K key, [V? defaultValue]) {
+  /// Returns the value associated with the key, or the [defaultValue] if the
+  /// key is not found.
+  T? getOrDefault<T>(K key, [T? defaultValue]) {
     if (containsKey(key)) {
       if (this[key] != null) {
-        return this[key];
+        return this[key] as T;
       }
       return defaultValue;
     }

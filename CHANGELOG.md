@@ -1,3 +1,6 @@
+## 0.2.18
+- update `Map.getOrDefault` method
+
 ## 0.2.17
 - add `String.hasSameCharacters` method
 
