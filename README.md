@@ -212,6 +212,25 @@ list.intersperse(100);
 // [1, 100, 2, 100, 3, 100, 4, 100, 5, 100, 1]
 ```
 
+#### updateWhere
+
+```dart
+List<int> numbers = [1, 2, 3, 4, 5];
+numbers.updateWhere(
+    (n) => n.isEven,  // predicate
+    (n) => n * 2,     // update function
+);
+// [1, 4, 3, 8, 5]
+
+// Works with any type
+List<String> words = ['hello', 'world', 'dart'];
+words.updateWhere(
+    (s) => s.length <= 4,
+    (s) => s.toUpperCase(),
+);
+// ['HELLO', 'world', 'DART']
+```
+
 ### Int
 
 #### microsecond

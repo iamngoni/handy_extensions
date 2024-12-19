@@ -9,6 +9,8 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:handy_extensions/handy_extensions.dart';
 
+import 'models/test_models.dart';
+
 void main() {
   test('partition', () {
     expect([1, 2, 3, 4, 5, 6].partition(chunkSize: 2), [
@@ -142,5 +144,64 @@ void main() {
     final List<List<int>> partitioned = numbers.partitionWhere((e) => e.isEven);
     expect(partitioned[0], [2, 4, 6, 8, 10]);
     expect(partitioned[1], [1, 3, 5, 7, 9]);
+  });
+
+  group('List.updateWhere', () {
+    test('updates matching elements in a number list', () {
+      final numbers = [1, 2, 3, 4, 5]..updateWhere(
+          (n) => n.isEven,
+          (n) => n * 2,
+        );
+      expect(numbers, [1, 4, 3, 8, 5]);
+    });
+
+    test('handles empty list', () {
+      final empty = <int>[]..updateWhere(
+          (n) => n.isEven,
+          (n) => n * 2,
+        );
+      expect(empty, isEmpty);
+    });
+
+    test('updates string list based on condition', () {
+      final words = ['hello', 'world', 'dart', 'flutter']..updateWhere(
+          (s) => s.length <= 4,
+          (s) => s.toUpperCase(),
+        );
+      expect(words, ['HELLO', 'world', 'DART', 'flutter']);
+    });
+
+    test('no updates when predicate never matches', () {
+      final numbers = [1, 2, 3];
+      final originalList = [...numbers];
+      numbers.updateWhere(
+        (n) => n > 100,
+        (n) => n * 2,
+      );
+      expect(numbers, originalList);
+    });
+
+    test('updates all elements when predicate always matches', () {
+      final numbers = [1, 2, 3]..updateWhere(
+          (n) => true,
+          (n) => n + 1,
+        );
+      expect(numbers, [2, 3, 4]);
+    });
+
+    test('handles complex objects', () {
+      final people = [
+        const Person('Alice', 25),
+        const Person('Bob', 30),
+        const Person('Charlie', 35),
+      ]..updateWhere(
+          (p) => p.age > 30,
+          (p) => Person(p.name.toUpperCase(), p.age),
+        );
+
+      expect(people[0].name, 'Alice');
+      expect(people[1].name, 'Bob');
+      expect(people[2].name, 'CHARLIE');
+    });
   });
 }

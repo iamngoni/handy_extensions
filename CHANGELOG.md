@@ -1,3 +1,6 @@
+## 0.2.19
+- add `List.updateWhere` method
+
 ## 0.2.18
 - update `Map.getOrDefault` method
 

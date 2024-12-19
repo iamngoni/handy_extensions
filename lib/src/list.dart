@@ -296,4 +296,32 @@ extension HandyListExtensions<E> on List<E> {
   bool containsSome(List<E> items) {
     return items.any(contains);
   }
+
+  /// Updates elements in the list that match the given predicate function.
+  ///
+  /// Takes two functions:
+  /// - [fn] is a predicate that returns true for elements that should be updated
+  /// - [update] transforms matching elements to their new values
+  ///
+  /// Example:
+  /// ```dart
+  /// final numbers = [1, 2, 3, 4, 5];
+  ///
+  /// // Double all even numbers
+  /// numbers.updateWhere(
+  ///   (n) => n.isEven,
+  ///   (n) => n * 2
+  /// );
+  /// // Result: [1, 4, 3, 8, 5]
+  /// ```
+  ///
+  /// The original list is modified in place. Elements are updated by applying
+  /// the [update] function to each element where [fn] returns true.
+  void updateWhere(bool Function(E) fn, E Function(E) update) {
+    for (int i = 0; i < length; i++) {
+      if (fn(this[i])) {
+        this[i] = update(this[i]);
+      }
+    }
+  }
 }
