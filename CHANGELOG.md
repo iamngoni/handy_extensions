@@ -1,3 +1,6 @@
+## 0.2.20
+- add `List.firstOrNullWhere` method
+
 ## 0.2.19
 - add `List.updateWhere` method
 

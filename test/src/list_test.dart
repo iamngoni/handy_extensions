@@ -146,7 +146,7 @@ void main() {
     expect(partitioned[1], [1, 3, 5, 7, 9]);
   });
 
-  group('List.updateWhere', () {
+  group('updateWhere', () {
     test('updates matching elements in a number list', () {
       final numbers = [1, 2, 3, 4, 5]..updateWhere(
           (n) => n.isEven,
@@ -202,6 +202,49 @@ void main() {
       expect(people[0].name, 'Alice');
       expect(people[1].name, 'Bob');
       expect(people[2].name, 'CHARLIE');
+    });
+  });
+
+  group('firstOrNullWhere', () {
+    test('finds first matching non-null element', () {
+      final List<int?> numbers = [1, 2, 3, 4];
+      final result = numbers.firstOrNullWhere((n) => n != null && n.isEven);
+      expect(result, 2);
+    });
+
+    test('finds first null element', () {
+      final List<int?> numbers = [1, null, 3, null];
+      final result = numbers.firstOrNullWhere((n) => n == null);
+      expect(result, null);
+    });
+
+    test('returns null for no match', () {
+      final List<int?> numbers = [1, 3, 5];
+      final result = numbers.firstOrNullWhere((n) => n != null && n.isEven);
+      expect(result, null);
+    });
+
+    test('handles null list', () {
+      const List<int?> numbers = [];
+      final result = numbers.firstOrNullWhere((n) => n != null);
+      expect(result, null);
+    });
+
+    test('handles empty list', () {
+      final List<int?> numbers = [];
+      final result = numbers.firstOrNullWhere((n) => n != null);
+      expect(result, null);
+    });
+
+    test('works with complex objects', () {
+      final List<Person?> people = [
+        const Person('Alice', 25),
+        null,
+        const Person('Bob', 30),
+      ];
+
+      final result = people.firstOrNullWhere((p) => p != null && p.age > 28);
+      expect(result?.name, 'Bob');
     });
   });
 }

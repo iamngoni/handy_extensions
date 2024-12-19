@@ -6,6 +6,7 @@ export 'list.dart';
 export 'map.dart';
 export 'nullable/int.dart';
 export 'nullable/iterable.dart';
+export 'nullable/list.dart';
 export 'nullable/string.dart';
 export 'num.dart';
 export 'string.dart';
