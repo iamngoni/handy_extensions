@@ -168,7 +168,7 @@ void main() {
           (s) => s.length <= 4,
           (s) => s.toUpperCase(),
         );
-      expect(words, ['HELLO', 'world', 'DART', 'flutter']);
+      expect(words, ['hello', 'world', 'DART', 'flutter']);
     });
 
     test('no updates when predicate never matches', () {
