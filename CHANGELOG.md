@@ -1,3 +1,6 @@
+## 0.2.21
+- add `List.isValidIndex` method
+
 ## 0.2.20
 - add `List.firstOrNullWhere` method
 

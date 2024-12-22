@@ -247,4 +247,10 @@ void main() {
       expect(result?.name, 'Bob');
     });
   });
+
+  test('isValidIndex', () {
+    final List<int> numbers = [1, 2, 3, 4, 5];
+    expect(numbers.isValidIndex(2), true);
+    expect(numbers.isValidIndex(5), false);
+  });
 }
