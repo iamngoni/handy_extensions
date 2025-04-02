@@ -1,3 +1,6 @@
+## 0.2.22
+- add `List.getAt` method
+
 ## 0.2.21
 - add `List.isValidIndex` method
 

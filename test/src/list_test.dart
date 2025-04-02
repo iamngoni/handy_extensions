@@ -253,4 +253,10 @@ void main() {
     expect(numbers.isValidIndex(2), true);
     expect(numbers.isValidIndex(5), false);
   });
+
+  test('getAt', () {
+    final List<int> numbers = [1, 2, 3, 4, 5];
+    expect(numbers.getAt(2), 3);
+    expect(numbers.getAt(5), null);
+  });
 }

@@ -344,4 +344,28 @@ extension HandyListExtensions<E> on List<E> {
   bool isValidIndex(int index) {
     return index >= 0 && index < length;
   }
+
+  /// Checks if the given [index] is valid for this list.
+  ///
+  /// Returns value if the index is within the bounds of the list,
+  /// `null` otherwise.
+  ///
+  /// An index is considered valid if it:
+  /// - Is non-negative (>= 0)
+  /// - Is less than the list length
+  ///
+  /// Example:
+  /// ```dart
+  /// var numbers = [1, 2, 3];
+  /// print(numbers.getAt(1)); // 2
+  /// print(numbers.getAt(3)); // null
+  /// print(numbers.getAt(-1)); // null
+  /// ```
+  E? getAt(int index) {
+    if (isValidIndex(index)) {
+      return this[index];
+    }
+
+    return null;
+  }
 }
