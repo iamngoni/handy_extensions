@@ -259,4 +259,196 @@ void main() {
     expect(numbers.getAt(2), 3);
     expect(numbers.getAt(5), null);
   });
+
+  test('should update matching elements and return true', () {
+    final numbers = [1, 2, 3, 4, 5];
+
+    final result = numbers.updateWhereOrCreate(
+      (n) => n.isEven,
+      (n) => n * 2,
+      () => [99],
+    );
+
+    expect(result, isTrue);
+    expect(numbers, equals([1, 4, 3, 8, 5]));
+  });
+
+  test('should create single element when no matches and return false', () {
+    final numbers = [1, 3, 5];
+
+    final result = numbers.updateWhereOrCreate(
+      (n) => n.isEven,
+      (n) => n * 2,
+      () => 10,
+    );
+
+    expect(result, isFalse);
+    expect(numbers, equals([1, 3, 5, 10]));
+  });
+
+  test('should create multiple elements when no matches and return false', () {
+    final numbers = [1, 3, 5];
+
+    final result = numbers.updateWhereOrCreate(
+      (n) => n.isEven,
+      (n) => n * 2,
+      () => [2, 4, 6],
+    );
+
+    expect(result, isFalse);
+    expect(numbers, equals([1, 3, 5, 2, 4, 6]));
+  });
+
+  test('should work with complex objects', () {
+    final users = [
+      User(id: 1, name: 'Alice', active: true),
+      User(id: 2, name: 'Bob', active: false),
+    ];
+
+    final result = users.updateWhereOrCreate(
+      (user) => user.active,
+      (user) => user.copyWith(name: user.name.toUpperCase()),
+      () => User(id: 99, name: 'Default', active: true),
+    );
+
+    expect(result, isTrue);
+    expect(users.length, equals(2));
+    expect(users[0].name, equals('ALICE'));
+    expect(users[1].name, equals('Bob')); // unchanged
+  });
+
+  test('should create default user when no active users found', () {
+    final users = [
+      User(id: 1, name: 'Alice', active: false),
+      User(id: 2, name: 'Bob', active: false),
+    ];
+
+    final result = users.updateWhereOrCreate(
+      (user) => user.active,
+      (user) => user.copyWith(name: user.name.toUpperCase()),
+      () => User(id: 99, name: 'Default', active: true),
+    );
+
+    expect(result, isFalse);
+    expect(users.length, equals(3));
+    expect(users[2].name, equals('Default'));
+    expect(users[2].active, isTrue);
+  });
+
+  test('should throw error for invalid create return type', () {
+    final numbers = [1, 3, 5];
+
+    expect(
+      () => numbers.updateWhereOrCreate(
+        (n) => n.isEven,
+        (n) => n * 2,
+        () => 'invalid', // Wrong type
+      ),
+      throwsA(isA<ArgumentError>()),
+    );
+  });
+
+  test('should handle empty list', () {
+    final List<int> numbers = [];
+
+    final result = numbers.updateWhereOrCreate(
+      (n) => n.isEven,
+      (n) => n * 2,
+      () => [1, 2, 3],
+    );
+
+    expect(result, isFalse);
+    expect(numbers, equals([1, 2, 3]));
+  });
+
+  test('should update matching elements and return true', () {
+    final scores = [85, 100, 92, 100, 78];
+
+    final result = scores.updateWhereOrCreateMultiple(
+      (score) => score == 100,
+      (score) => score + 5, // bonus points
+      () => [95, 98],
+    );
+
+    expect(result, isTrue);
+    expect(scores, equals([85, 105, 92, 105, 78]));
+  });
+
+  test('should create multiple elements when no matches and return false', () {
+    final scores = [85, 92, 78];
+
+    final result = scores.updateWhereOrCreateMultiple(
+      (score) => score == 100,
+      (score) => score + 5,
+      () => [95, 98, 100],
+    );
+
+    expect(result, isFalse);
+    expect(scores, equals([85, 92, 78, 95, 98, 100]));
+  });
+
+  test('should work with strings', () {
+    final words = ['hello', 'world'];
+
+    final result = words.updateWhereOrCreateMultiple(
+      (word) => word.startsWith('x'),
+      (word) => word.toUpperCase(),
+      () => ['xenon', 'xray'],
+    );
+
+    expect(result, isFalse);
+    expect(words, equals(['hello', 'world', 'xenon', 'xray']));
+  });
+
+  test('should create empty list when create returns empty', () {
+    final numbers = [1, 3, 5];
+
+    final result = numbers.updateWhereOrCreateMultiple(
+      (n) => n.isEven,
+      (n) => n * 2,
+      () => <int>[], // Empty list
+    );
+
+    expect(result, isFalse);
+    expect(numbers, equals([1, 3, 5])); // No change
+  });
+
+  test('should handle empty list', () {
+    final List<int> numbers = [];
+
+    final result = numbers.updateWhereOrCreateMultiple(
+      (n) => n > 0,
+      (n) => n * 2,
+      () => [1, 2, 3],
+    );
+
+    expect(result, isFalse);
+    expect(numbers, equals([1, 2, 3]));
+  });
+
+  test('should handle null values in list', () {
+    final List<int?> numbers = [1, null, 3, null, 5];
+
+    final result = numbers.updateWhereOrCreate(
+      (n) => n == null,
+      (n) => 0,
+      () => [-1],
+    );
+
+    expect(result, isTrue);
+    expect(numbers, equals([1, 0, 3, 0, 5]));
+  });
+
+  test('should preserve order when creating multiple elements', () {
+    final letters = ['a', 'b'];
+
+    final result = letters.updateWhereOrCreateMultiple(
+      (letter) => letter == 'z',
+      (letter) => letter.toUpperCase(),
+      () => ['x', 'y', 'z'],
+    );
+
+    expect(result, isFalse);
+    expect(letters, equals(['a', 'b', 'x', 'y', 'z']));
+  });
 }

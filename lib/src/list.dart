@@ -325,6 +325,117 @@ extension HandyListExtensions<E> on List<E> {
     }
   }
 
+  /// Updates elements in the list that match the given predicate function,
+  /// or creates new elements if no matches are found.
+  ///
+  /// Takes three functions:
+  /// - [fn] is a predicate that returns true for elements that should be updated
+  /// - [update] transforms matching elements to their new values
+  /// - [create] creates new elements to add if no matches are found
+  ///
+  /// The [create] function can return a single element or a list of elements.
+  /// If it returns a single element, that element is added to the list.
+  /// If it returns a list, all elements in that list are added.
+  ///
+  /// Example with single element creation:
+  /// ```dart
+  /// final users = [
+  ///   User(id: 1, name: 'Alice', active: true),
+  ///   User(id: 2, name: 'Bob', active: false),
+  /// ];
+  ///
+  /// // Update active users or create a default user
+  /// users.updateWhereOrCreate(
+  ///   (user) => user.active,
+  ///   (user) => user.copyWith(name: user.name.toUpperCase()),
+  ///   () => User(id: 99, name: 'Default', active: true),
+  /// );
+  /// // Result: Alice becomes ALICE, and Default user is added
+  /// ```
+  ///
+  /// Example with multiple element creation:
+  /// ```dart
+  /// final numbers = [1, 3, 5];
+  ///
+  /// // Double even numbers or add default evens
+  /// numbers.updateWhereOrCreate(
+  ///   (n) => n.isEven,
+  ///   (n) => n * 2,
+  ///   () => [2, 4, 6],
+  /// );
+  /// // Result: [1, 3, 5, 2, 4, 6] (no evens found, so defaults added)
+  /// ```
+  ///
+  /// Returns true if any elements were updated, false if new elements were created.
+  bool updateWhereOrCreate(
+    bool Function(E) fn,
+    E Function(E) update,
+    dynamic Function() create,
+  ) {
+    bool foundMatch = false;
+
+    // First pass: update existing elements
+    for (int i = 0; i < length; i++) {
+      if (fn(this[i])) {
+        this[i] = update(this[i]);
+        foundMatch = true;
+      }
+    }
+
+    // If no matches found, create new elements
+    if (!foundMatch) {
+      final created = create();
+      if (created is List<E>) {
+        addAll(created);
+      } else if (created is E) {
+        add(created);
+      } else {
+        throw ArgumentError(
+            'create() must return either an element of type $E or List<$E>, '
+            'but returned ${created.runtimeType}');
+      }
+    }
+
+    return foundMatch;
+  }
+
+  /// A version that creates multiple elements if no matches found.
+  ///
+  /// Example:
+  /// ```dart
+  /// final scores = [85, 92, 78];
+  ///
+  /// // Update perfect scores or add some defaults
+  /// scores.updateWhereOrCreateMultiple(
+  ///   (score) => score == 100,
+  ///   (score) => score + 5, // bonus points
+  ///   () => [95, 98, 100],
+  /// );
+  /// // Result: [85, 92, 78, 95, 98, 100]
+  /// ```
+  bool updateWhereOrCreateMultiple(
+    bool Function(E) fn,
+    E Function(E) update,
+    List<E> Function() create,
+  ) {
+    bool foundMatch = false;
+
+    // Update existing elements
+    for (int i = 0; i < length; i++) {
+      if (fn(this[i])) {
+        this[i] = update(this[i]);
+        foundMatch = true;
+      }
+    }
+
+    // Create new elements if no matches found
+    if (!foundMatch) {
+      addAll(create());
+    }
+
+    return foundMatch;
+  }
+
   /// Checks if the given [index] is valid for this list.
   ///
   /// Returns `true` if the index is within the bounds of the list,
