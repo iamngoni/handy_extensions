@@ -1,3 +1,6 @@
+## 0.2.24
+- add updateWhereOrCreate methods to List extensions, enables conditional updates with fallback creation
+
 ## 0.2.23
 - add `List.getAt` method
 
