@@ -12,7 +12,7 @@ Developed with 💙 by [Ngonidzashe Mangudya](https://twitter.com/iamngoni_)
 <img src="https://img.shields.io/github/last-commit/iamngoni/handy_extensions">
 <img src="https://img.shields.io/twitter/url?label=iamngoni_&style=social&url=https%3A%2F%2Ftwitter.com%2Fiamngoni_">
 
-Handy Extension is just a simple library with extensions to the core libraries to make them more handy and quicker to use.
+Handy Extension is a comprehensive library with extensions to Dart's core types and Flutter's BuildContext to make development more efficient and code more readable.
 
 > I don't know how "deadly" this is but I just use it anyway.
 
@@ -20,13 +20,13 @@ Handy Extension is just a simple library with extensions to the core libraries t
 
 - [BuildContext](https://api.flutter.dev/flutter/widgets/BuildContext-class.html)
 - [String](https://api.flutter.dev/flutter/dart-core/String-class.html)
-- [int](https://api.flutter.dev/flutter/dart-core/int-class.html)
+- [int/num](https://api.flutter.dev/flutter/dart-core/num-class.html)
 - [List](https://api.flutter.dev/flutter/dart-core/List-class.html)
 - [DateTime](https://api.flutter.dev/flutter/dart-core/DateTime-class.html)
-- [Num](https://api.flutter.dev/flutter/dart-core/num-class.html)
 - [Map](https://api.flutter.dev/flutter/dart-core/Map-class.html)
 - [Iterable](https://api.flutter.dev/flutter/dart-core/Iterable-class.html)
-- Nullable String (probably useless 😂 but it's there)
+- Nullable types (String?, int?, List?, Iterable?)
+- General extensions for any type
 
 ## Getting started
 
@@ -41,317 +41,403 @@ dependencies:
 
 ### BuildContext
 
-#### Navigate To A Page
+#### Get Screen Dimensions
 
 ```dart
-context.goTo(page: const Home());
+// Get screen height
+double screenHeight = context.height;
+
+// Get screen width
+double screenWidth = context.width;
 ```
 
-#### Navigate To A Page Replacing The Current Page
+### String
 
-```dart
-context.goTo(page: const Home(), replace: true);
-```
-
-#### Go Back To The Previous Page
-
-```dart
-context.goBack();
-```
-
-#### Navigate To A Page And Remove History
-
-```dart
-context.goToRefresh(page: const Login());
-```
-
-#### Notify The User Using A SnackBar
-
-```dart
-context.notify(message: 'Hello World', isError: false); // You can pass the isError argument or leave it, it will default to false
-```
-
-#### Get Screen Size (based on MediaQuery)
-
-```dart
-// Height
-context.height;
-// Width
-context.width;
-```
-
-###  String
-
-#### Country Emoji
+#### Country Code to Emoji
 
 ```dart
 String country = 'ZW';
-String emoji = country.countryEmoji; // => 🇿🇼 (String)
+String emoji = country.countryEmoji; // => 🇿🇼
 ```
 
-#### Title Case
+#### Text Case Transformations
 
 ```dart
 String title = 'hello world';
 String titleCase = title.titleCase; // => Hello world
+String headingCase = title.headingCase; // => Hello World
 ```
 
-#### Heading Case
+#### String Parsing
 
 ```dart
-String heading = 'hello world';
-String headingCase = heading.headingCase; // => Hello World
+String number = '42.5';
+
+// Check if string is numeric
+bool isNum = number.isNumeric; // => true
+
+// Parse to double or int safely
+double? doubleValue = number.toDoubleOrNull; // => 42.5
+int? intValue = '42'.toIntOrNull; // => 42
 ```
 
-#### doubleOrNull
+#### String Comparisons
 
 ```dart
-String? number = '1';
-double? doubleNumber = number.doubleOrNull; // => 1.0 (double) or null (null)
-```
+String text = 'Hello';
 
-#### intOrNull
+// Case-insensitive matching
+bool matches = text.matches('hello'); // => true
 
-```dart
-String? number = '1';
-int? intNumber = number.intOrNull; // => 1 (int) or null (null)
-```
+// Check if all uppercase
+bool isUpper = 'HELLO'.isAllCaps; // => true
 
-### Map
-
-#### swap
-    
-```dart
-Map<String, int> map = {'a': 1, 'b': 2};
-map.swap; // {1: 'a', 2: 'b'}
-```
-
-#### copy
-    
-```dart
-Map<String, int> map = {'a': 1, 'b': 2};
-map.copy; // {'a': 1, 'b': 2}
-```
-
-#### removeNulls
-    
-```dart
-Map<String, int?> map = {'a': 1, 'b': null};
-map.removeNulls; // {'a': 1}
-```
-
-#### adjustOrder
-    
-```dart
-Map<String, int> map = {'a': 1, 'b': 2};
-map.adjustOrder(1, 0); // {'b': 2, 'a': 1}
+// Check if strings have same characters (different order)
+bool sameChars = 'hello'.hasSameCharacters('olleh'); // => true
 ```
 
 ### List
 
-#### Partition into chunks
+#### Partitioning
 
 ```dart
-[1,2,3,4,5,6].partition(chunkSize: 3); // => [[1,2,3],[4,5,6]] (List<List<int>>). By default it will partition into chunks of 2
+List<int> numbers = [1, 2, 3, 4, 5, 6];
+
+// Split into chunks
+List<List<int>> chunks = numbers.partition(chunkSize: 3); 
+// => [[1, 2, 3], [4, 5, 6]]
+
+// Partition based on condition
+List<List<int>> evenOdd = numbers.partitionWhere((n) => n.isEven);
+// => [[2, 4, 6], [1, 3, 5]]
+
+// Split into equal-sized sublists
+List<List<int>> split = numbers.splitInto(chunkSize: 2);
+// => [[1, 2, 3], [4, 5, 6]]
 ```
 
-#### Random Item
+#### Random Selection
 
 ```dart
-// Will return a random item from the list of type T
-["Hello", "World", "iAMNGONI"].randomItem();
+List<String> words = ["Hello", "World", "Dart"];
+
+// Get random item
+String randomWord = words.randomItem();
+
+// Get multiple random items (no duplicates)
+List<String> randomWords = words.randomItems(count: 2);
 ```
 
-#### Random Items
+#### Safe Operations
 
 ```dart
-// Will return a list of random items from the list of type T. By default this may return a
-// list with only one item
-["Hello", "World", "iAMNGONI"].randomItems(count: 2);
+List<String> items = ['a', 'b', 'c'];
+
+// Safe first where operation
+String? found = items.firstWhereOrNull((item) => item == 'a'); // => 'a'
+
+// Safe index access
+String? item = items.getAt(1); // => 'b'
+String? invalid = items.getAt(10); // => null
+
+// Check if index is valid
+bool valid = items.isValidIndex(1); // => true
 ```
 
-#### firstWhereOrNull
+#### Grouping and Organization
 
 ```dart
-List<String> list = ['a', 'b', 'c'];
-String? character = list.firstWhereOrNull( (String item) => item == 'a'); // => 'a' (String) or null (null)
+List<Map<String, dynamic>> movies = [
+  {"title": "Avengers", "year": "2019"},
+  {"title": "Creed", "year": "2019"},
+  {"title": "Jumanji", "year": "2020"},
+];
+
+// Group by field
+Map<String, List<Map<String, dynamic>>> grouped = 
+    movies.groupBy((m) => m["year"]);
 ```
 
-#### groupBy
-
-```dart
-[1,2,3,4,5,6].groupBy((i) => i % 2 == 0); // {true: [2, 4, 6], false: [1, 3, 5]}
-```
-
-#### swap
-
-```dart
-List<int> list = [1, 2, 3, 4, 5];
-list.swap(0, 4); // [5, 2, 3, 4, 1]
-```
-
-#### swapRange
-
-```dart
-List<int> list = [1, 2, 3, 4, 5];
-list.swapRange(0, 2, 3); // [4, 5, 3, 1, 2]
-```
-
-#### hasDuplicates
-
-```dart
-List<int> list = [1, 2, 3, 4, 5, 1];
-list.hasDuplicates; // true
-```
-
-#### intersperse
-
-```dart
-List<int> list = [1, 2, 3, 4, 5, 1];
-list.intersperse(100);
-// [1, 100, 2, 100, 3, 100, 4, 100, 5, 100, 1]
-```
-
-#### updateWhere
+#### List Manipulation
 
 ```dart
 List<int> numbers = [1, 2, 3, 4, 5];
+
+// Swap elements
+numbers.swap(0, 4); // [5, 2, 3, 4, 1]
+
+// Swap ranges
+numbers.swapRange(0, 2, 3); // [4, 5, 3, 1, 2]
+
+// Check for duplicates
+bool hasDups = [1, 2, 3, 2].hasDuplicates(); // => true
+
+// Check if contains any of multiple items
+bool containsAny = numbers.containsSome([6, 7, 8]); // => false
+
+// Compare lists regardless of order
+bool same = [1, 2, 3].same([3, 1, 2]); // => true
+```
+
+#### Update Operations
+
+```dart
+List<int> numbers = [1, 2, 3, 4, 5];
+
+// Update elements matching condition
 numbers.updateWhere(
-    (n) => n.isEven,  // predicate
-    (n) => n * 2,     // update function
+  (n) => n.isEven,  // predicate
+  (n) => n * 2,     // update function
 );
-// [1, 4, 3, 8, 5]
+// Result: [1, 4, 3, 8, 5]
 
-// Works with any type
-List<String> words = ['hello', 'world', 'dart'];
-words.updateWhere(
-    (s) => s.length <= 4,
-    (s) => s.toUpperCase(),
+// Update or create if no matches found
+List<String> users = ['alice', 'bob'];
+bool updated = users.updateWhereOrCreate(
+  (user) => user.startsWith('c'),
+  (user) => user.toUpperCase(),
+  () => 'charlie', // created if no 'c' names found
 );
-// ['HELLO', 'world', 'DART']
 ```
 
-### Int
+### Map
 
-#### microsecond
+#### Map Transformations
 
 ```dart
-Duration microsecond = 1.microsecond; // => 1
+Map<String, int> original = {'a': 1, 'b': 2, 'c': 3};
+
+// Swap keys and values
+Map<int, String> swapped = original.swap; // {1: 'a', 2: 'b', 3: 'c'}
+
+// Create a copy
+Map<String, int> copied = original.copy;
+
+// Remove null values
+Map<String, int?> withNulls = {'a': 1, 'b': null, 'c': 3};
+Map<String, int?> cleaned = withNulls.removeNulls; // {'a': 1, 'c': 3}
 ```
 
-#### milliseconds
+#### Map Operations
 
 ```dart
-Duration milliseconds = 1.milliseconds; // => 1
+Map<String, int> map = {'a': 1, 'b': 2, 'c': 3, 'd': 4};
+
+// Reorder entries
+Map<String, int> reordered = map.adjustOrder(1, 3);
+
+// Get value or default
+int value = map.getOrDefault('e', 0); // => 0
 ```
 
-#### seconds
+### DateTime
+
+#### Readable Formats
 
 ```dart
-Duration seconds = 1.seconds; // => 1
+DateTime date = DateTime(2022, 3, 15, 14, 30, 45);
+
+// Various readable formats
+String readable = date.readableDate; // => Tuesday 15 March 2022
+String readableDateTime = date.readableDateTime; // => March 15, 2022 14:30:45
+String time = date.readableTime; // => 14:30:45
+String timeFormat = date.timeFormat; // => 02:30pm
+String combined = date.readableDateTimeFormat; // => Tuesday 15 March 2022, 02:30pm
 ```
 
-#### minutes
+#### Date Components
 
 ```dart
-Duration minutes = 1.minutes; // => 1
+DateTime date = DateTime(2022, 3, 15);
+
+// Get components
+String day = date.getDay; // => Tuesday
+String shortDay = date.getShortDay; // => Tue
+int dayOfMonth = date.getDate; // => 15
+String month = date.getMonth; // => March
+String shortMonth = date.getShortMonth; // => Mar
+String year = date.getYear; // => 2022
 ```
 
-#### hours
+#### Time Intelligence
 
 ```dart
-Duration hours = 1.hours; // => 1
+DateTime now = DateTime.now();
+DateTime past = now.subtract(Duration(hours: 2));
+
+// Time ago
+String ago = past.timeAgo; // => 2h
+
+// Time of day
+String timeOfDay = DateTime(2022, 1, 1, 9, 0).timeOfDayStr; // => Morning
+String emoji = DateTime(2022, 1, 1, 21, 0).timeOfDayEmoji; // => 🌙
+
+// Smart description
+String desc = past.describe; // => 02:30pm (for today) or Yesterday, etc.
 ```
 
-#### days
+#### Date Comparisons
 
 ```dart
-Duration days = 1.days; // => 1
+DateTime date1 = DateTime(2022, 3, 15, 9, 0);
+DateTime date2 = DateTime(2022, 3, 15, 18, 0);
+DateTime date3 = DateTime(2022, 3, 16);
+
+// Check if same day (ignoring time)
+bool sameDay = date1.isSameDayForYear(date2); // => true
+
+// Check if same day/month (ignoring year)
+bool sameDayMonth = date1.isSameDay(DateTime(2023, 3, 15)); // => true
+
+// Check if between dates
+bool between = date1.isBetween(
+  DateTime(2022, 1, 1), 
+  DateTime(2022, 12, 31)
+); // => true
 ```
 
-#### weeks
+### Num/Int
+
+#### Duration Creation
 
 ```dart
-Duration weeks = 1.weeks; // => 1
+// Create durations easily
+Duration micro = 500.microseconds;
+Duration milli = 1500.milliseconds; // or 1500.ms
+Duration sec = 30.seconds;
+Duration min = 5.minutes;
+Duration hr = 2.hours;
+Duration day = 3.days;
+Duration week = 2.weeks;
+Duration month = 1.months; // ~30.44 days
+Duration year = 1.years; // calculated based on current date
+
+// Combine durations
+Duration total = 1.weeks + 2.days + 3.hours + 4.minutes;
 ```
 
-#### Example usage of the above duration items
+#### Number Operations
 
 ```dart
-Duration duration = 1.weeks + 2.days + 3.hours + 4.minutes + 5.seconds + 6.milliseconds + 7.microseconds;
+// Check if number is in range
+bool inRange = 5.isBetween(1, 10); // => true
 ```
 
-### General
+### Iterable
 
-#### Check if variable is null
+#### Interspersing Elements
+
+```dart
+List<String> words = ["Hello", "World", "Dart"];
+
+// Insert separator between elements
+Iterable<String> withCommas = words.intersperse(",");
+// Result: [Hello, ,, World, ,, Dart]
+
+// Insert separators conditionally
+Iterable<int> numbers = [1, 2, 3, 4, 5];
+Iterable<dynamic> conditional = numbers.intersperseWith(
+  (n) => n.isEven ? ':' : null
+);
+// Result: [1, 2, :, 3, 4, :, 5]
+
+// Insert at specific index
+Iterable<String> atIndex = words.intersperseAt(1, '-');
+// Result: [Hello, World, -, Dart]
+
+// Insert at end
+Iterable<String> atEnd = words.intersperseAtLast('!');
+// Result: [Hello, World, Dart, !]
+```
+
+### Nullable Extensions
+
+#### Nullable String
 
 ```dart
 String? name = null;
-name.isNull; // => true (bool)
+String? greeting = 'Hello';
+
+// Check if string (not null)
+bool isString = name.isString; // => false
+bool isGreeting = greeting.isString; // => true
+
+// Get value or empty string
+String safe = name.orEmpty; // => ''
+String value = greeting.orEmpty; // => 'Hello'
+
+// Check if not null and not empty/whitespace
+bool hasContent = name.isNotReallyEmpty; // => false
+bool greetingHasContent = greeting.isNotReallyEmpty; // => true
 ```
 
-### Nullable Int
-
-#### isInt
-
-```dart
-int? number = 1;
-number.isInt; // => true (bool)
-```
+#### Nullable Int
 
 ```dart
 int? number = null;
-number.isInt; // => false (bool)
+int? value = 42;
+
+// Check if int (not null)
+bool isInt = number.isInt; // => false
+bool isValue = value.isInt; // => true
 ```
 
-### Nullable String
-
-#### isString
+#### Nullable List
 
 ```dart
-String? name = 'Ngoni';
-name.isString; // => true (bool)
+List<int?> numbers = [1, null, 3, 4];
+
+// Find first element matching condition (handles nulls safely)
+int? firstEven = numbers.firstOrNullWhere((n) => n != null && n.isEven); // => 4
+int? firstNull = numbers.firstOrNullWhere((n) => n == null); // => null
 ```
+
+#### Nullable Iterable
 
 ```dart
-String? name = null;
-name.isString; // => false (bool)
+Iterable<String?> items = ['hello', null, 'world', null];
+
+// Remove all null elements
+Iterable<String> nonNull = items.withoutNullElements();
+// Result: ['hello', 'world']
 ```
 
-### orEmpty
+### General Extensions
+
+Available on any type:
 
 ```dart
-String? name = null;
-name.orEmpty; // => '' (String)
+// Apply a function to any value
+int result = 5.let((it) => it * 2); // => 10
+
+String processed = "hello".let((s) => s.toUpperCase()); // => "HELLO"
+
+// Check if any value is null
+bool isNull = someValue.isNull;
 ```
+
+## Utility Types
+
+The library also includes utility enums:
 
 ```dart
-String? name = 'Ngoni';
-name.orEmpty; // => 'Ngoni' (String)
+enum HapticFeedbackType {
+  light,
+  medium,
+  heavy,
+  selection,
+  vibrate,
+}
 ```
 
-### isNotReallyEmpty
+## Additional Information
 
-```dart
-String? name = null;
-name.isNotReallyEmpty; // => false (bool)
-```
+This library provides over 100 extension methods across Dart's core types and Flutter's BuildContext. All extensions are designed to be intuitive, well-documented, and thoroughly tested.
 
-```dart
-String? name = ' ';
-name.isNotReallyEmpty; // => false (bool)
-```
+You can contribute additional extensions to help make Dart development even more efficient!
 
-```dart
-String? name = 'Ngoni';
-name.isNotReallyEmpty; // => true (bool)
-```
+---
 
-## Additional information
-
-You can add in more extensions of your own -> share with the rest of the world.
-
---- 
 [dart_install_link]: https://dart.dev/get-dart
 [github_actions_link]: https://docs.github.com/en/actions/learn-github-actions
 [license_badge]: https://img.shields.io/badge/license-MIT-blue.svg
