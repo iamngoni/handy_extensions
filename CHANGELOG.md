@@ -1,3 +1,6 @@
+## 0.2.26
+- add nullIfEmpty, firstOrNullWhere extensions to nullable lists
+
 ## 0.2.25
 - updated docs
 
