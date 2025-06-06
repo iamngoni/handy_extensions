@@ -38,3 +38,26 @@ class User {
   @override
   String toString() => 'User(id: $id, name: $name, active: $active)';
 }
+
+class Product {
+  final String name;
+  final double price;
+  final String category;
+
+  Product(this.name, this.price, this.category);
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Product &&
+          runtimeType == other.runtimeType &&
+          name == other.name &&
+          price == other.price &&
+          category == other.category;
+
+  @override
+  int get hashCode => name.hashCode ^ price.hashCode ^ category.hashCode;
+
+  @override
+  String toString() => 'Product($name, \$$price, $category)';
+}
