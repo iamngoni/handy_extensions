@@ -266,7 +266,7 @@ void main() {
     final result = numbers.updateWhereOrCreate(
       (n) => n.isEven,
       (n) => n * 2,
-      () => [99],
+      () => 99,
     );
 
     expect(result, isTrue);
@@ -284,19 +284,6 @@ void main() {
 
     expect(result, isFalse);
     expect(numbers, equals([1, 3, 5, 10]));
-  });
-
-  test('should create multiple elements when no matches and return false', () {
-    final numbers = [1, 3, 5];
-
-    final result = numbers.updateWhereOrCreate(
-      (n) => n.isEven,
-      (n) => n * 2,
-      () => [2, 4, 6],
-    );
-
-    expect(result, isFalse);
-    expect(numbers, equals([1, 3, 5, 2, 4, 6]));
   });
 
   test('should work with complex objects', () {
@@ -333,32 +320,6 @@ void main() {
     expect(users.length, equals(3));
     expect(users[2].name, equals('Default'));
     expect(users[2].active, isTrue);
-  });
-
-  test('should throw error for invalid create return type', () {
-    final numbers = [1, 3, 5];
-
-    expect(
-      () => numbers.updateWhereOrCreate(
-        (n) => n.isEven,
-        (n) => n * 2,
-        () => 'invalid', // Wrong type
-      ),
-      throwsA(isA<ArgumentError>()),
-    );
-  });
-
-  test('should handle empty list', () {
-    final List<int> numbers = [];
-
-    final result = numbers.updateWhereOrCreate(
-      (n) => n.isEven,
-      (n) => n * 2,
-      () => [1, 2, 3],
-    );
-
-    expect(result, isFalse);
-    expect(numbers, equals([1, 2, 3]));
   });
 
   test('should update matching elements and return true', () {
@@ -432,7 +393,7 @@ void main() {
     final result = numbers.updateWhereOrCreate(
       (n) => n == null,
       (n) => 0,
-      () => [-1],
+      () => -1,
     );
 
     expect(result, isTrue);

@@ -370,7 +370,7 @@ extension HandyListExtensions<E> on List<E> {
   bool updateWhereOrCreate(
     bool Function(E) fn,
     E Function(E) update,
-    dynamic Function() create,
+    E Function() create,
   ) {
     bool foundMatch = false;
 
@@ -385,15 +385,7 @@ extension HandyListExtensions<E> on List<E> {
     // If no matches found, create new elements
     if (!foundMatch) {
       final created = create();
-      if (created is List<E>) {
-        addAll(created);
-      } else if (created is E) {
-        add(created);
-      } else {
-        throw ArgumentError(
-            'create() must return either an element of type $E or List<$E>, '
-            'but returned ${created.runtimeType}');
-      }
+      add(created);
     }
 
     return foundMatch;
