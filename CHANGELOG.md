@@ -1,3 +1,6 @@
+## 0.0.27
+- Simplify updateWhereOrCreate method to return single element only
+
 ## 0.2.26
 - add nullIfEmpty, firstOrNullWhere extensions to nullable lists
 
