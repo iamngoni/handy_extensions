@@ -317,12 +317,16 @@ extension HandyListExtensions<E> on List<E> {
   ///
   /// The original list is modified in place. Elements are updated by applying
   /// the [update] function to each element where [fn] returns true.
-  void updateWhere(bool Function(E) fn, E Function(E) update) {
+  bool updateWhere(bool Function(E) fn, E Function(E) update) {
+    bool updated = false;
     for (int i = 0; i < length; i++) {
       if (fn(this[i])) {
         this[i] = update(this[i]);
+        updated = true;
       }
     }
+
+    return updated;
   }
 
   /// Updates elements in the list that match the given predicate function,
