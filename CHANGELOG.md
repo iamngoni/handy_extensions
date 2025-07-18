@@ -1,3 +1,6 @@
+## 0.0.28
+- Add return value for updateWhere, indicates if changed
+
 ## 0.0.27
 - Simplify updateWhereOrCreate method to return single element only
 
