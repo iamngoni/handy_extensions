@@ -61,4 +61,63 @@ void main() {
       expect('HANDY EXTENSIONS'.isAllCaps, true);
     });
   });
+
+  group('select', () {
+    test('removes script tags from string', () {
+      const input = 'Check - Check In: Maintenance Due : ZAR 1374.94.'
+          '<script type="text/javascript">viewGLAccounts(0,2722896);</script>'
+          ' Check In:';
+      final result = input.select(start: '<script', end: '</script>')?.remove();
+      expect(
+          result, 'Check - Check In: Maintenance Due : ZAR 1374.94. Check In:');
+    });
+
+    test('returns null when start marker not found', () {
+      const input = 'Hello World';
+      final result = input.select(start: '<script', end: '</script>');
+      expect(result, isNull);
+    });
+
+    test('returns null when end marker not found', () {
+      const input = 'Hello <script>World';
+      final result = input.select(start: '<script>', end: '</script>');
+      expect(result, isNull);
+    });
+
+    test('selected returns the full selection including markers', () {
+      const input = 'Hello <b>World</b> Goodbye';
+      final selection = input.select(start: '<b>', end: '</b>');
+      expect(selection?.selected, '<b>World</b>');
+    });
+
+    test('content returns text between markers', () {
+      const input = 'Hello <b>World</b> Goodbye';
+      final selection = input.select(start: '<b>', end: '</b>');
+      expect(selection?.content('<b>', '</b>'), 'World');
+    });
+
+    test('replace substitutes selection with new text', () {
+      const input = 'Hello <b>World</b> Goodbye';
+      final result =
+          input.select(start: '<b>', end: '</b>')?.replace('Universe');
+      expect(result, 'Hello Universe Goodbye');
+    });
+
+    test('removeAll removes all occurrences', () {
+      const input = 'A<x>1</x>B<x>2</x>C';
+      final result =
+          input.select(start: '<x>', end: '</x>')?.removeAll('<x>', '</x>');
+      expect(result, 'ABC');
+    });
+
+    test('replaceAll replaces all occurrences', () {
+      const input = 'A<x>1</x>B<x>2</x>C';
+      final result = input.select(start: '<x>', end: '</x>')?.replaceAll(
+            start: '<x>',
+            end: '</x>',
+            replacement: '[]',
+          );
+      expect(result, 'A[]B[]C');
+    });
+  });
 }
