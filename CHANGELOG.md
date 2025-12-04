@@ -1,3 +1,6 @@
+## 0.2.29
+- Add `String.select` method for selecting and manipulating substrings by string markers
+
 ## 0.0.28
 - Add return value for updateWhere, indicates if changed
 

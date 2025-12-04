@@ -96,6 +96,43 @@ bool isUpper = 'HELLO'.isAllCaps; // => true
 bool sameChars = 'hello'.hasSameCharacters('olleh'); // => true
 ```
 
+#### String Selection
+
+Select and manipulate substrings using string markers instead of integer indices:
+
+```dart
+// Remove script tags from HTML
+String input = 'Price: ZAR 1374.94.<script>alert(1);</script> Check In:';
+String clean = input.select(start: '<script', end: '</script>')?.remove();
+// => 'Price: ZAR 1374.94. Check In:'
+
+// Get the selected text including markers
+String html = 'Hello <b>World</b> Goodbye';
+String? selected = html.select(start: '<b>', end: '</b>')?.selected;
+// => '<b>World</b>'
+
+// Get content between markers (excluding markers)
+String? content = html.select(start: '<b>', end: '</b>')?.content('<b>', '</b>');
+// => 'World'
+
+// Replace selection
+String? replaced = html.select(start: '<b>', end: '</b>')?.replace('Universe');
+// => 'Hello Universe Goodbye'
+
+// Remove all occurrences
+String multi = 'A<x>1</x>B<x>2</x>C';
+String? cleaned = multi.select(start: '<x>', end: '</x>')?.removeAll('<x>', '</x>');
+// => 'ABC'
+
+// Replace all occurrences
+String? allReplaced = multi.select(start: '<x>', end: '</x>')?.replaceAll(
+  start: '<x>',
+  end: '</x>',
+  replacement: '[]',
+);
+// => 'A[]B[]C'
+```
+
 ### List
 
 #### Partitioning
